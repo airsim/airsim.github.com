@@ -1,0 +1,22 @@
+.inner {
+	width: 560px;	
+}
+
+#sidebar-container {
+	display: none;
+}
+
+#content {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+footer {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.blogBadge {
+	left: 0;
+	margin-left: -85px;
+}

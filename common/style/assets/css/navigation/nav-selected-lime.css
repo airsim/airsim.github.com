@@ -1,0 +1,26 @@
+nav#main-navigation ul li a:hover, nav#main-navigation>.inner>ul>li>a.current, nav#main-navigation>.inner>ul>li>a.currentAncestor, nav#main-navigation ul ul li a.current, nav#main-navigation ul ul li a.currentAncestor {
+	text-shadow: none;
+	color: #fff;
+	background: url(../../images/navigation/nav-lime.jpg) repeat-x 0 center;
+}
+
+nav#main-navigation>.inner>ul>li.hasChild>a:hover, nav#main-navigation>.inner>ul>li.hasChild>a.current, nav#main-navigation>.inner>ul>li.hasChild>a.currentAncestor, nav#main-navigation ul ul li.hasChild>a:hover, nav#main-navigation ul ul li.hasChild>a.current, nav#main-navigation ul ul li.hasChild>a.currentAncestor {
+	text-shadow: none;
+	color: #fff;
+	background: url(../../images/navigation/nav-lime-wht-arrow.jpg) repeat-x right center;
+}
+
+
+nav#main-navigation>.inner>ul>li#home-button>a {
+	text-shadow: none;
+	background: url(../../images/navigation/nav-lime-home-overlay.jpg) no-repeat center center;
+}
+
+nav#main-navigation>.inner>ul>li#home-button>a:hover, nav#main-navigation>.inner>ul>li#home-button>a.current, nav#main-navigation>.inner>ul>li#home-button>a.currentAncestor {
+	text-shadow: none;
+	background: url(../../images/navigation/nav-lime-home-overlay-inv.jpg) no-repeat center center;
+}
+
+nav#main-navigation>.inner>ul>li>a:hover, nav#main-navigation>.inner>ul>li>a.current, nav#main-navigation>.inner>ul>li>a.currentAncestor, nav#main-navigation>.inner>ul>li#home-button>a:hover, nav#main-navigation>.inner>ul>li#home-button>a.current, nav#main-navigation>.inner>ul>li#home-button>a.currentAncestor {
+	border-bottom: 1px solid #a9c88f;
+}

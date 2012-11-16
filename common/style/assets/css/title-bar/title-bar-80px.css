@@ -1,0 +1,28 @@
+#title-bar {
+	height: 80px;
+}
+
+#site-logo {
+	margin-top: 10px;
+	height: 60px;
+}
+
+#site-logo img {
+	height: 60px;
+}
+
+#title-bar h1 {
+	letter-spacing: -2px;
+	line-height: 80px;
+	height: 80px;
+	font-size: 36px;
+}
+
+#title-bar h2 {
+	letter-spacing: -1px;
+	line-height: 40px;
+	height: 40px;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+#content ul {
+	list-style-position: inside;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+#content li:before {
+	content: '\f061';
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: inherit;
+	margin-right: 6px;
+}

@@ -1,0 +1,12 @@
+#sidebar-container {
+	float: left;
+}
+
+#content, footer {
+	margin-left: 280px;
+}
+
+.blogBadge {
+	right: 0;
+	margin-right: -85px;
+}

@@ -1,0 +1,28 @@
+
+#stacks_in_107_page0 .stacks_left {
+	float:left;
+	width:42%;
+}
+
+#stacks_in_107_page0 .stacks_right {
+	float:right;
+	width:56%;
+}
+#stacks_in_128_page0 {
+	-moz-border-radius:  10px;
+	-webkit-border-radius:  10px;
+	border-radius:  10px;
+	margin: 10px 0px 0px 0px;
+}
+
+#stacks_in_56_page0 {
+	padding: 0px 0px 5px 0px;
+}
+
+#stacks_in_124_page0 {
+	padding: 15px 0px 5px 0px;
+}
+
+#stacks_in_136_page0 {
+	padding: 15px 0px 5px 0px;
+}

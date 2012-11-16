@@ -1,0 +1,16 @@
+#title-bar h1 {
+	float: right;
+}
+
+#title-bar h2 {
+	float: right;
+	border-right-width: 2px;
+	border-right-style: solid;
+	margin-right: 20px;
+	padding-right: 20px;
+}
+
+#site-logo {
+	float: right;
+	margin-left: 20px;
+}

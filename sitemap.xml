@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>http://www.airsim.org/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page1/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page1/page5/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page1/page6/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page1/page7/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page3/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page3/page8/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page3/page2/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page3/page9/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page4/index.html</loc>
+	</url>
+	<url>
+		<loc>http://www.airsim.org/page10/index.html</loc>
+	</url>
+</urlset>
