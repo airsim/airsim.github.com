@@ -110,12 +110,12 @@
       <h3 id="sidebar-title"></h3>
       <h6>AirSim now</h6>
       <br />
-      You want to use AirSim right away to  have a better idea of what it is? Try out the #Online version.<br />
+      You want to use AirSim right away to  have a better idea of what it is? Try out the <a href="../../online_sim/index.html">online</a> version.<br />
       <br />
       <br />
       <h6>Specific question?</h6>
       <br />
-      The #F.A.Q. page is here to help. There is a good chance that your questions will find their answers there.
+      The <a href="../faq/index.html">F.A.Q.</a> page is here to help. There is a good chance that your questions will find their answers there.
       <div id="archives"> </div>
       <div id="extraContent4">
         <div id="extraContent4TopperImage"></div>
@@ -153,10 +153,10 @@
               <li>Packaged</li>
             </ul>
             <br />
-            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the #online version or download the #preconfigured virtual machine and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on Github.<br /><br /><br />
+            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the <a href="../../online_sim/index.html">online version</a> or download the <a href="../../download/index.html">preconfigured virtual machine</a> and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on Github.<br /><br /><br />
             
             <h4>Packaged Version</h4>
-            <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the #Online version or the #Pre-installed in a downloadable virtual machine one. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
+            <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../../online_sim/index.html">online version</a> or download the <a href="../../download/index.html">virtual box appliance</a> to get all you need in one big package. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
             
             <h5>Metasim installation</h5>
             
@@ -179,7 +179,7 @@
             <pre>cd ~/dev</pre>
             <pre>git clone git://gitorious.orinet.nce.amadeus.net/stdair/stdair.git stdairgit</pre>
             <pre>cd ~/dev/stdairgit</pre>
-            <pre>git checkout trunk></pre>
+            <pre>git checkout trunk</pre>
 			<pre>mkdir -p tmp && cd tmp</pre>
             <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
             <pre>make && make install</pre>
@@ -191,7 +191,7 @@
 			<pre>rm -f stdair-stable</pre>
 			<pre>ln -s stdair-99.99.99 stdair-stable</pre>
             
-            <p>In order to install another specific module, you need to check its dependencies in the #dependency tree. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+            <p>In order to install another specific module, you need to check its dependencies in the <a href="../user_manual/index.html">dependency tree</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
             
             <strong><h7>TraDemGen</h7></strong>
             <pre>cd ~/dev</pre>
@@ -199,7 +199,7 @@
             <pre>cd trademgengit</pre>
 			<pre>git checkout trunk</pre>
             <pre>mkdir -p tmp && cd tmp</pre>
-			<p>You need to specify the StdAir release which will be used to build the Trademgen component: indeed, as illustrated in the #dependency tree, the only dependency of TraDemgen is the StdAir library:</p>
+			<p>You need to specify the StdAir release which will be used to build the Trademgen component: indeed, as illustrated in the <a href="../user_manual/index.html">dependency tree</a>, the only dependency of TraDemgen is the StdAir library:</p>
             <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
             
             <p>If encounter any problem, try:</p>
