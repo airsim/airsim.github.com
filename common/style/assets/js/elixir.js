@@ -6,7 +6,7 @@
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
-// 'elixir' is the global object for the elixir RapidWeaver theme
+// 'elixir' is the global object for the elixir theme
 var elixir = {};
 
 // reduce potential conflicts with other scripts on the page

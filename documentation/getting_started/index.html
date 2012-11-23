@@ -153,7 +153,60 @@
               <li>Packaged</li>
             </ul>
             <br />
-            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the #online version or download the #preconfigured virtual machine and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on #Github.<br />
+            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the #online version or download the #preconfigured virtual machine and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on Github.<br /><br /><br />
+            
+            <h4>Packaged Version</h4>
+            <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the #Online version or the #Pre-installed in a downloadable virtual machine one. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
+            
+            <h5>Metasim installation</h5>
+            
+            <p>Enter the chosen working directory, for instance:</p>
+            <pre>cd ~/dev</pre>
+            <p>Clone the metasim project from the github environment</p>
+            <pre>git clone git@github.com:airsim/metasim.git metasimgit</pre>
+			<pre>cd ~/dev/metasimgit</pre>
+			<pre>git checkout trunk</pre>
+            <p>Copy and edit the metasim.yaml file with your own details (check you firewall settings if necessary):</p>
+			<pre>cp metasim.yaml.sample metasim.yaml</pre>
+            <p>Clone, configure, install and check all the components with the commands:</p>
+			<pre>rake clone && rake configure && rake install && rake check</pre>
+            <p>To have the list of all available commands, try:</p>
+			<pre>rake --tasks</pre>
+            
+            <h5>Module by Module Installation</h5><br/>
+            <strong><h7>StdAir</h7></strong>
+            <p>StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it. Follow the steps below to download, build and install StdAir:</p>
+            <pre>cd ~/dev</pre>
+            <pre>git clone git://gitorious.orinet.nce.amadeus.net/stdair/stdair.git stdairgit</pre>
+            <pre>cd ~/dev/stdairgit</pre>
+            <pre>git checkout trunk></pre>
+			<pre>mkdir -p tmp && cd tmp</pre>
+            <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
+            <pre>make && make install</pre>
+            <pre>make check</pre><br/>
+            
+            <p>Update the Deliveries :</p>
+            <p>Have the latest StdAir release 'tagged' as the stable one:</p>
+            <pre>cd ~/dev/deliveries</pre>
+			<pre>rm -f stdair-stable</pre>
+			<pre>ln -s stdair-99.99.99 stdair-stable</pre>
+            
+            <p>In order to install another specific module, you need to check its dependencies in the #dependency tree. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+            
+            <strong><h7>TraDemGen</h7></strong>
+            <pre>cd ~/dev</pre>
+            <pre>git clone git@github.com:airsim/trademgen.git trademgengit</pre>
+            <pre>cd trademgengit</pre>
+			<pre>git checkout trunk</pre>
+            <pre>mkdir -p tmp && cd tmp</pre>
+			<p>You need to specify the StdAir release which will be used to build the Trademgen component: indeed, as illustrated in the #dependency tree, the only dependency of TraDemgen is the StdAir library:</p>
+            <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
+            
+            <p>If encounter any problem, try:</p>
+            <pre>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/[user]/dev/deliveries/stdair-stable/lib</pre>
+
+			<p>Build, install the demand generation library and perform tests:</p>
+            <pre>make & make install && make check</pre>
           </div>
         </div>
       </div>
