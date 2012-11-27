@@ -206,11 +206,13 @@ jquery(function() {
                 Clone locally the full Git project: 
                 <pre>cd ~ <br/>mkdir dev<br/>cd ~/dev/<br/>git clone git@github.com:airsim/stdair.git stdairgit<br/>cd stdairgit<br/>git checkout trunk</pre>
                 <strong>Build the StdAir project</strong><br/>
-                Link with StdAir, create the distribution package (say, 0.5.0) and compile using the following commands: 
+                Configure and compile using the following commands: 
                 <pre>cd ~/dev/stdairgit<br/>rm -rf build && mkdir -p build<br/>cd build <br/>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \<br/> -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..<br/>make</pre>
                 <strong>Run the Tests</strong><br/>
                 After building the StdAir project, the following commands run the tests: 
                 <pre>cd ~/dev/stdairgit <br/>cd build<br/>make check</pre>
+                As a result, you should obtain a similar report:
+                <pre><img src="files/ss_stdair_test_successful.jpg" width="594" height="195" alt="Site logo"/></pre>
                 <strong>Update the StdAir deliveries</strong><br/>
                 Have the latest StdAir release 'tagged' as the stable one:
                 <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
