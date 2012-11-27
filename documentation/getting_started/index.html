@@ -1,15 +1,14 @@
-<!doctype html><head>
+<!doctype html>
+<head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <a class="myBadge facebookBadge" href="http://www.facebook.com/tvlsim"></a><a class="myBadge twitterBadge" href="#"></a>
-
 <title>Getting Started</title>
 <meta name="viewport" content="width=1300" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/styles.css"  />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/colors-page6.css"  />
 <script type="text/javascript" src="../../common/style/assets/javascript.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/jquery.min.js"></script>
-
 <script type="text/javascript" src="../../common/style/assets/js/jquery-ui-1.9.1.custom.min.js"></script>
 <script>
 var jquery = jQuery;
@@ -159,20 +158,30 @@ jquery(function() {
             </div>
             There are many ways to get started with AirSim and this page is here to give you all the information you need to do so easily.<br />
             <br />
-            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the <a href="../../online_sim/index.html">online version</a> or download the <a href="../../download/index.html">preconfigured virtual machine</a> and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on Github.<br /><br /><br />
+            Choosing which flavor is the right for you is pretty easy. If you are looking to use AirSim as soon as possible in a preconfigured environment you can go to the <a href="../../online_sim/index.html">online version</a> or download the <a href="../../download/index.html">preconfigured virtual machine</a> and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into AirSim, you can get the source code on Github.<br />
+            <br />
+            <br />
             AirSim comes in different flavors :<br />
             <div id="accordion" style="padding:0px">
-            <h3 style="color:#FFF;">Online</h3>
-            	<div>Online</div>
-            <h3 style="color:#FFF;">Pre-installed in a downloadable virtual machine</h3>
-              	<div>Pre-installed in a downloadable virtual machine</div>
-            <h3 style="color:#FFF;">Packaged</h3>
-              	<div>
+              <h3 style="color:#FFF;">Online</h3>
+              <div>Online</div>
+              <h3 style="color:#FFF;">Pre-installed in a downloadable virtual machine</h3>
+              <div>You want a quick start to get AirSim working localy, this is for you! <br/>
+                First download the latest version of VirtualBox <a href="https://www.virtualbox.org/">here</a>. <br/>
+                Then download the VirtualBox Appliance <a href="../../download/index.html">here.</a> <br/>
+                <br/>
+                When you finished installing VirtualBox follow these steps:<br/>
+                - File<br/>
+                - Import Appliance<br/>
+                - Open Appliance...<br/>
+                <br/>
+                Select the .OVA file you just downloaded and import the machine.<br/>
+                Once Virtual Box finished the setup simply run it. </div>
+              <h3 style="color:#FFF;">Packaged</h3>
+              <div>
                 <h4>Packaged Version</h4>
                 <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../../online_sim/index.html">online version</a> or download the <a href="../../download/index.html">virtual box appliance</a> to get all you need in one big package. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
-                
                 <h5>Metasim installation</h5>
-                
                 <p>Enter the chosen working directory, for instance:</p>
                 <pre>cd ~/dev</pre>
                 <p>Clone the metasim project from the github environment</p>
@@ -184,12 +193,15 @@ jquery(function() {
                 <p>Clone, configure, install and check all the components with the commands:</p>
                 <pre>rake clone && rake configure && rake install && rake check</pre>
                 <p>To have the list of all available commands, try:</p>
-                <pre>rake --tasks</pre></div>
-            
-            <h3 style="color:#FFF;">Module by Module Installation</h3>
-            <div style="padding-left:5px; padding-right:5px">
-                <h5>Module by Module Installation</h5><br/>
-                <strong><h7>StdAir</h7></strong>
+                <pre>rake --tasks</pre>
+              </div>
+              <h3 style="color:#FFF;">Module by Module Installation</h3>
+              <div style="padding-left:5px; padding-right:5px">
+                <h5>Module by Module Installation</h5>
+                <br/>
+                <strong>
+                <h7>StdAir</h7>
+                </strong>
                 <p>StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it. Follow the steps below to download, build and install StdAir:</p>
                 <pre>cd ~/dev</pre>
                 <pre>git clone git://gitorious.orinet.nce.amadeus.net/stdair/stdair.git stdairgit</pre>
@@ -198,17 +210,17 @@ jquery(function() {
                 <pre>mkdir -p tmp && cd tmp</pre>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
                 <pre>make && make install</pre>
-                <pre>make check</pre><br/>
-                
+                <pre>make check</pre>
+                <br/>
                 <p>Update the Deliveries :</p>
                 <p>Have the latest StdAir release 'tagged' as the stable one:</p>
                 <pre>cd ~/dev/deliveries</pre>
                 <pre>rm -f stdair-stable</pre>
                 <pre>ln -s stdair-99.99.99 stdair-stable</pre>
-                
                 <p>In order to install another specific module, you need to check its dependencies in the <a href="../user_manual/index.html">dependency tree</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
-                
-                <strong><h7>TraDemGen</h7></strong>
+                <strong>
+                <h7>TraDemGen</h7>
+                </strong>
                 <pre>cd ~/dev</pre>
                 <pre>git clone git@github.com:airsim/trademgen.git trademgengit</pre>
                 <pre>cd trademgengit</pre>
@@ -216,15 +228,12 @@ jquery(function() {
                 <pre>mkdir -p tmp && cd tmp</pre>
                 <p>You need to specify the StdAir release which will be used to build the Trademgen component: indeed, as illustrated in the <a href="../user_manual/index.html">dependency tree</a>, the only dependency of TraDemgen is the StdAir library:</p>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
-                
                 <p>If encounter any problem, try:</p>
                 <pre>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/[user]/dev/deliveries/stdair-stable/lib</pre>
-    
                 <p>Build, install the demand generation library and perform tests:</p>
-                <pre>make & make install && make check</pre> 
-                </div>
-            
-            </div>                 
+                <pre>make & make install && make check</pre>
+              </div>
+            </div>
           </div>
         </div>
       </div>
