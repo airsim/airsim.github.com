@@ -110,7 +110,7 @@
       <h3 id="sidebar-title"></h3>
       <h5>More on GitHub</h5>
       <br />
-      Go and have a look on GitHub for the latest technical documentation on AirSim.
+      Go and have a look on <a href="https://github.com/airsim" rel="self">GitHub</a> for discovering the whole list of AirSim repositories.
       <div id="archives"> </div>
       <div id="extraContent4">
         <div id="extraContent4TopperImage"></div>
@@ -135,43 +135,58 @@
           </div>
         </div>
         <div id='stacks_out_3_page5' class='stacks_out'>
-          <div id='stacks_in_3_page5' class='stacks_in'><strong>airsim.github.com</strong>: this very website<strong><br />
+          <div id='stacks_in_3_page5' class='stacks_in'><br />
+            <strong><a href="https://github.com/airsim/dsim" rel="self">DSim</a></strong>: C++ Airline Market Simulator. DSim uses TraDemGen to generate booking requests, then calls SimCRS to build 
+			the corresponding travel solution list (a travel solution is made of a segment path obtained from the schedules, as well as the corresponding prices and availabilities), asks TravelCCM 
+			to make a choice among the travel solution list and finally comes back to SimCRS to make a potential sell.<br />
             <br />
-            Global-Documentation</strong>: general documentation for the overall project and community<strong><br />
+            <strong><a href="https://github.com/airsim/trademgen" rel="self">TraDemGen</a></strong>: C++ Travel Demand Generator. Takes a demand input file and generates a stream of requests which 
+			uses Event Queue as a temporary storage. In the input file, for each origin-destination and each day, the mean of demand requests number, the trip type (round-trip or one way), the 
+			probability to accept restrictions, the willingness to pay, the preferred arrival time, etc. are defined.<br />
             <br />
-            demand-modeling</strong>: demand modeling studies<br />
+            <strong><a href="https://github.com/airsim/simcrs" rel="self">SimCRS</a></strong>: C++ Simulated Computer Reservation System (CRS). Plays an intermediary role in the process: calls 
+			AirSched to build travel solution lists, calls SimFQT to compute prices, calls AirInv to get availabilities or to make a sell, ...<br />
             <br />
-            <strong>dsim</strong>: the travel market simulator<br />
+            <strong><a href="https://github.com/airsim/airsched" rel="self">AirSched</a></strong>: C++ Simulated Airline Schedule Service. AirSched takes care of creating schedules from an input 
+			file which contains information such as airline code, flight number, departure date, legs (a leg is a direct flight and a flight can contain several legs), boarding time, etc.<br />
             <br />
-            <strong>airing</strong>: C++ simulation airline inventory management library<br />
+            <strong><a href="https://github.com/airsim/airinv" rel="self">AirInv</a></strong>: C++ Simulated Airline IT Inventory System. AirInv uses schedule input file to manage airlines 
+			Inventories: for example it is called by SimCRS to compute availabilities.<br />
             <br />
-            <strong>airsched</strong>: C++ simulation airline schedule management library<br />
+            <strong><a href="https://github.com/airsim/rmol" rel="self">RMOL</a></strong>: C++ Revenue Management (RM) Open Library. Contains Revenue Management algorithms. <br />
             <br />
-            <strong>stair</strong>: C++ standard simulation airline IT library<br />
+            <strong><a href="https://github.com/airsim/airrac" rel="self">AirRac</a></strong>: C++ Airline Revenue Accounting (RAC) library. Generates a yield cache thanks to a yield input file.<br />
             <br />
-            <strong>simrds</strong>: simulation reference data sets<br />
+            <strong><a href="https://github.com/airsim/sevmgr" rel="self">SEvMgr</a></strong>: C++ Simulation-Oriented Discrete Event Management Library. SEvMgr handles the Event Queue containing 
+			all the simulation events. TraDemGen pushes booking requests and cancellations into the queue whereas AirInv adds Inventory snap shots and revenue management events. This Event Queue is 
+			the representation of the time, each Event (snapshot, booking request, cancellation...) is sorted according to the time.<br />
             <br />
-            <strong>airrac</strong>: C++ simulation revenue accounting (RAC) library<br />
+            <strong><a href="https://github.com/airsim/simfqt" rel="self">SimFQT</a></strong>: C++ Simulator Fare Quote (FQT) Library. Contains all the pricing algorithms to help fill in the travel 
+			solutions with the appropriate price.<br />
             <br />
-            <strong>sevmgr</strong>: C++ simulation discrete event management library<br />
+            <strong><a href="https://github.com/airsim/travelccm" rel="self">TravelCCM</a></strong>: C++ Travel Customer Choice Model (CCM) library. TravelCCM plays the role of a customer by 
+			choosing the best travel solution from a provided list. The choice can be based on the price, the time constraints, the restrictions...or a mix of all those parameters. This part can 
+			be modified in order to simulate at best passenger behaviours.<br />
             <br />
-            <strong>simfqt</strong>: C++ simulation fare quote library<br />
+            <strong><a href="https://github.com/airsim/stdair" rel="self">StdAir</a></strong>: C++ Standard Airline IT library. This library is used by all others modules, it contains all business 
+			objects useful in Airline IT (for example: Inventory, Fare Family, Booking Class, Booking Request, Cancellation, ...).<br />
             <br />
-            <strong>travelccm</strong>: C++ simulation travel choice model (CCM) library<br />
+            <strong><a href="https://github.com/airsim/avlcal" rel="self">AvlCal</a></strong>: C++ Simulated Availability Calculator Library.<br />
             <br />
-            <strong>avlcal</strong>: C++ simulation  availability calculation library<br />
+            <strong><a href="https://github.com/airsim/simcrs" rel="self">SimLFS</a></strong>: C++ Simulated Low Fare Search (LFS) System.<br />
             <br />
-            <strong>rmol</strong>: C++ simulation revenue management (RM) open library<br />
+            <strong><a href="https://github.com/airsim/metasim" rel="self">MetaSim</a></strong>: Helper containing all simulator components.<br />
             <br />
-            <strong>simcrs</strong>: C++ simulation computer reservation system (CRS) library<br />
+            <strong><a href="https://github.com/airsim/simrds" rel="self">SimRDS</a></strong>: Simulation Reference Data Sets.<br />
             <br />
-            <strong>simlfs<br />
+            <strong><a href="https://github.com/airsim/Global-Documentation" rel="self">Global-Documentation</a></strong>: General documentation for the overall project and community.<br />
             <br />
-            trademgen<br />
+            <strong><a href="https://github.com/airsim/demand-modelling" rel="self">Demand-Modelling</a></strong>: Demand Modelling studies.<br />
             <br />
-            metasim<br />
+            <strong><a href="https://github.com/airsim/Dynamic-Pricing-Studies" rel="self">Dynamic-Pricing-Studies</a></strong>: Dynamic Pricing studies.<br />
             <br />
-            Dynamic-Pricing-Studies</strong></div>
+            <strong><a href="https://github.com/airsim/airsim.github.com" rel="self">AirSim</a></strong>: this very website.<br />
+            </div>
         </div>
       </div>
     </div>
