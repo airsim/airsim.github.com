@@ -184,50 +184,41 @@ jquery(function() {
                 <h5>Metasim installation</h5>
                 <p>Enter the chosen working directory, for instance:</p>
                 <pre>cd ~/dev</pre>
-                <p>Clone the metasim project from the github environment</p>
+                <p>Clone the metasim project from the github environment:</p>
                 <pre>git clone git@github.com:airsim/metasim.git metasimgit</pre>
                 <pre>cd ~/dev/metasimgit</pre>
-                <pre>git checkout trunk</pre>
                 <p>Copy and edit the metasim.yaml file with your own details (check you firewall settings if necessary):</p>
                 <pre>cp metasim.yaml.sample metasim.yaml</pre>
                 <p>Clone, configure, install and check all the components with the commands:</p>
                 <pre>rake clone && rake configure && rake install && rake check</pre>
                 <p>To have the list of all available commands, try:</p>
-                <pre>rake --tasks</pre>
-              </div>
-              <h3 style="color:#FFF;">Module by Module Installation</h3>
-              <div style="padding-left:5px; padding-right:5px">
-                <h5>Module by Module Installation</h5>
-                <br/>
-                <strong>
-                <h7>StdAir</h7>
-                </strong>
-                <p>StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it. Follow the steps below to download, build and install StdAir:</p>
-                <pre>cd ~/dev</pre>
-                <pre>git clone git://gitorious.orinet.nce.amadeus.net/stdair/stdair.git stdairgit</pre>
-                <pre>cd ~/dev/stdairgit</pre>
-                <pre>git checkout trunk</pre>
-                <pre>mkdir -p tmp && cd tmp</pre>
-                <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
-                <pre>make && make install</pre>
-                <pre>make check</pre>
-                <br/>
-                <p>Update the Deliveries :</p>
-                <p>Have the latest StdAir release 'tagged' as the stable one:</p>
-                <pre>cd ~/dev/deliveries</pre>
-                <pre>rm -f stdair-stable</pre>
-                <pre>ln -s stdair-99.99.99 stdair-stable</pre>
+                <pre>rake --tasks</pre></div>
+            <h3 style="color:#FFF;">Module by Module Installation</h3>
+            <div style="padding-left:5px; padding-right:5px">
+                StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it.
+                <ul class="disc">
+                	<li><a href="#STDAIR">StdAir Installation</a><br/></li>
+                	<li><a href="#OTHER">Other Module Installation</a><br/></li>
+                </ul>
+                <strong><h6 id="STDAIR">StdAir Installation</h6></strong>
+                <p>Follow the steps below to download, build and install StdAir.</p>
+                <strong>Get the StdAir library</strong><br/>
+                Clone locally the full Git project: 
+                <pre>cd ~ <br/>mkdir dev<br/>cd ~/dev/<br/>git clone git@github.com:airsim/stdair.git stdairgit<br/>cd stdairgit<br/>git checkout trunk</pre>
+                <strong>Build the StdAir project</strong><br/>
+                Link with StdAir, create the distribution package (say, 0.5.0) and compile using the following commands: 
+                <pre>cd ~/dev/stdairgit<br/>rm -rf build && mkdir -p build<br/>cd build <br/>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \<br/> -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..<br/>make</pre>
+                <strong>Run the Tests</strong><br/>
+                After building the StdAir project, the following commands run the tests: 
+                <pre>cd ~/dev/stdairgit <br/>cd build<br/>make check</pre>
+                <strong>Update the StdAir deliveries</strong><br/>
+                Have the latest StdAir release 'tagged' as the stable one:
+                <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
+                <strong><h6 id="OTHER">Other module installation</h6></strong>
                 <p>In order to install another specific module, you need to check its dependencies in the <a href="../user_manual/index.html">dependency tree</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
-                <strong>
-                <h7>TraDemGen</h7>
-                </strong>
-                <pre>cd ~/dev</pre>
-                <pre>git clone git@github.com:airsim/trademgen.git trademgengit</pre>
-                <pre>cd trademgengit</pre>
-                <pre>git checkout trunk</pre>
-                <pre>mkdir -p tmp && cd tmp</pre>
+                <pre>cd ~/dev<br/>git clone git@github.com:airsim/trademgen.git trademgengit<br/>cd trademgengit<br/>git checkout trunk<br/>mkdir -p build && cd build</pre>
                 <p>You need to specify the StdAir release which will be used to build the Trademgen component: indeed, as illustrated in the <a href="../user_manual/index.html">dependency tree</a>, the only dependency of TraDemgen is the StdAir library:</p>
-                <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF ..</pre>
+                <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
                 <p>If encounter any problem, try:</p>
                 <pre>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/[user]/dev/deliveries/stdair-stable/lib</pre>
                 <p>Build, install the demand generation library and perform tests:</p>
