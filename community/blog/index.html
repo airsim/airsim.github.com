@@ -9,6 +9,9 @@
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/colors-page2.css"  />
 <script type="text/javascript" src="../../common/style/assets/javascript.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/jquery.min.js"></script>
+<script>
+var jquery = jQuery;
+</script>
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/home-button.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-right.css" />
@@ -46,7 +49,7 @@
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>  
        	<link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/ie.css"  />  
 		<![endif]-->
-</head><body>
+</head><body onLoad="onLoad()">
 <div id="extraContent6">
   <div id="modal-close-button" class="shadow icon-remove"></div>
   <div id="extraContainer6"></div>
@@ -128,7 +131,11 @@
       <div id='stacks_in_48_page2' class='stacks_in'>
         <div id='stacks_out_121_page2' class='stacks_out'>
           <div id='stacks_in_121_page2' class='stacks_in'>
-            <h1>Coming soon</h1>
+            <div id="blogposts">
+            	<span id="posttitle"></div>
+                <div id="postdate"></div>
+                <div id="postcontent"></div>
+             </div>
           </div>
         </div>
       </div>
@@ -139,5 +146,31 @@
   </div>
   <footer>&copy; 2012 AirSim</footer>
 </div>
+
+<script type='text/javascript'>
+	
+	function onLoad()
+	{
+		jquery(function(){
+						jquery.getJSON("https://public-api.wordpress.com/rest/v1/sites/airsimblog.wordpress.com/posts/?callback=?",
+						   function(data)
+						   {
+							   console.log(data);
+							   jquery.each(data.posts,function(i,item){
+								   jquery("<h3/>").attr("innerHTML", item.title).appendTo("#blogposts");
+								   jquery("<p/>").attr("innerHTML", item.date).appendTo("#postdate");
+								   jquery("<p/>").attr("innerHTML", item.content).appendTo("#postcontent");
+								   //document.getElementById(posttitle).value = data.posts[0].title;
+							   });
+						   });
+						});
+	}
+	
+
+</script>
+
 </body>
+
+
+
 </html>
