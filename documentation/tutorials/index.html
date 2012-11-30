@@ -9,8 +9,20 @@
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/colors-page6.css"  />
 <script type="text/javascript" src="../../common/style/assets/javascript.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/style/assets/js/jquery-ui-1.9.1.custom.min.js"></script>
+<script>
+var jquery = jQuery;
+jquery(function() {
+        jquery( "#accordion" ).accordion({
+            collapsible: true,
+			active: false,
+			heightStyle:"content"
+		});
+    });
+</script>
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/home-button.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/jquery-ui-1.9.1.custom.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-right.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-stripe-off.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/width/width-960px.css" />
@@ -108,12 +120,12 @@
   <div id="sidebar-container">
     <div id="sidebar" class="shadow">
       <h3 id="sidebar-title"></h3>
-      <h6>AirSim now</h6>
+      <h6><strong>AirSim now</strong></h6>
       <br />
       You want to use AirSim right away to  have a better idea of what it is? Try out the <a href="../../online_sim/index.html">Online version</a>.<br />
       <br />
       <br />
-      <h6>Specific question?</h6>
+      <h6><strong>Specific question?</strong></h6>
       <br />
       The <a href="../faq/index.html">F.A.Q.</a> page is here to help. There is a good chance that your questions will find their answers there.
       <div id="archives"> </div>
@@ -143,31 +155,57 @@
           <div id='stacks_in_51_page6' class='stacks_in'>
             <div class='stacks_div stacks_float_left'>
               <div class='centered_image' ></div>
-            </div>
-            <br />
-            The first mandatory tutorial is the <a href="../getting_started/index.html">Getting Started</a> procedure you should have already followed at this step. Once the needed AirSim packages are correctly installed, the following tutorials are what you need!<br />
-            	<ul class="disc">
-                	<li><a href="#GENERAL">General knowledge</a><br/></li>
-            		<li><a href="#COMMON">Common commands for basic batch</a><br/></li>
-            	</ul><br/>
-            	<strong><h6 id="GENERAL">General knowledge</h6></strong><br/>
+            </div><br />
+             	The first mandatory tutorial is the <a href="../getting_started/index.html">Getting Started</a> procedure you should have already followed at this step. Once the needed AirSim packages are correctly installed, the following tutorials are what you need!<br/><br />
+             	<div id="accordion" style="padding:0px">
+            	<h3 style="color:#FFF;">General knowledge</h3>
+            	<div>
             	Whatever the flavour chosen, those tutorials will help. The only difference is the way to launch binaries. Let's take for instance the whole simulator component named <strong>DSim</strong>.</br></br>
-            	If you are working within the pre-configured Virtual Box, the command is independent from the current directory as the simulator libraries have been installed within the Fedora package:
+            	If you are working within the <strong>pre-configured Virtual Box</strong>, the command is independent from the current directory as the simulator libraries have been installed within the Fedora package:
             	<pre>dsim</pre>
-            	If you chose to work within the packaged metasim component (where all simulation modules are available), the correct way to launch the binary is:
+            	If you chose to work within the <strong>packaged metasim component</strong> (where all simulation modules are available), the correct way to launch the binary is:
             	<pre>cd ~/dev/metasimgit/workspace/build/dsim/dsim</br>./dsim</pre>
-            	Finally, when dealing with all the modules independently, you can choose:
+            	Finally, when dealing with all the <strong>modules independently</strong>, you can choose:
             	<ul class="disc">
                 	<li>to run the local binary version:<br/></li><pre>cd ~/dev/dsimgit/dsim<br/>./simulate</pre>
             		<li>or to run the installed version:<br/></li><pre>cd ~/dev/deliverie/dsim-99.99.99/bin/<br/>./simulate</pre>
             	</ul>
-            	<strong><h6 id="COMMON">Common commands for basic batch</h6></strong>
-            	From here, we choose to work in the directory where the needed binary is present. Please, refer to the <a href="#GENERAL">General knowledge part</a> if you are not sure where to find the binaries.
+            	After running the script, you can check that a log file, named after the script, has been created in the current directory and have a look at it:
+            	<pre>ls</br>emacs simulate.log</pre>
+            	</div>
+            	<h3 style="color:#FFF;">Common commands for basic batches</h3>
+            	<div>
+            	From here, we choose to work in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowGeneralSection()">General knowledge part</a> if you are not sure where to find the binaries.
             	<ul class="disc">
-                	<li>Display the help:<br/><pre>./simulate --help</pre></li>
-            		<li>Run the scenario corresponding to a default BOM tree:<br/><pre>./simulate --builtin</pre></li>
+            		<li>Display the help:<br/><pre>./simulate --help</pre></li>
+            		<li>Run the scenario corresponding to a default built-in BOM tree:<br/><pre>./simulate --builtin</pre></li>
             		<li>Run the scenario corresponding to default input files:<br/><pre>./simulate</pre></li>
             	</ul><br/>
+            		</div>
+            	<h3 style="color:#FFF;">Common commands for interactive batches</h3>
+            	<div>
+            	In this part, we are working in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowGeneralSection()">General knowledge part</a> part if you are not sure where to find the binaries.</br></br>
+            	The interactive scripts can be launched exactly as the non-interactive ones:
+            	<pre>./dsim</pre>
+            	At this step, you should see something similar to the following screen shot:<br/>
+            	<pre><img src="files/ss_dsim_interactive.jpg" width="357" height="87" alt="Test result"/></pre>
+            	To display the help of the interactive scenario:<br/>
+            	<pre>help</pre>
+            	To quit the interactive scenario:
+            	<pre>quit</pre>
+            	</div>
+            	<h3 style="color:#FFF;">Simulation input files</h3>
+            	<div>
+            	<ul class="disc">
+            		<li>Demand Input file</li><br/>
+            		 The demand input file is composed of one or more lines, each line representing a demand stream.<br/><br/>    	
+                   	<li>Schedule Input File</li><br/>
+                	<li>Fare Input file</li><br/>
+                	<li>Yield Input File</li><br/>
+                	<li>Origin and Destination Input File</li><br/>
+            	</ul><br/>
+            	</div>
+            	</div>
             </div>
         </div>
       </div>
@@ -179,4 +217,10 @@
   <footer>&copy; 2012 AirSim</footer>
 </div>
 </body>
+<script>
+	function accordionShowGeneralSection()
+		{
+			jquery( "#accordion" ).accordion( "option", "active", 0 );
+		}
+</script
 </html>
