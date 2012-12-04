@@ -156,7 +156,8 @@ var jquery = jQuery;
 						   {
 							   jquery.each(data.posts,function(i,item){
 								   jquery("<h3/>").attr("innerHTML", item.title).appendTo("#blogposts");
-								   jquery("<p/>").attr("innerHTML", item.date).appendTo("#blogposts");
+								   var postdate = new Date(item.date).toLocaleDateString();
+								   jquery("<p/>").attr("innerHTML", postdate).appendTo("#blogposts");
 								   jquery("<p/>").attr("innerHTML", item.content).appendTo("#blogposts");
 								   //document.getElementById(posttitle).value = data.posts[0].title;
 							   });
