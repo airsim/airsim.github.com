@@ -133,14 +133,12 @@ var jquery = jQuery;
         <div id='stacks_out_121_page2' class='stacks_out'>
           <div id='stacks_in_121_page2' class='stacks_in'>
             <div id="blogposts">
-            	<span id="posttitle"></div>
-                <div id="postdate"></div>
-                <div id="postcontent"></div>
              </div>
           </div>
         </div>
       </div>
     </div>
+    
     <div class="clearer"></div>
     <div id="breadcrumb"></div>
     <div class="content-pop-shadow"></div>
@@ -156,11 +154,10 @@ var jquery = jQuery;
 						jquery.getJSON("https://public-api.wordpress.com/rest/v1/sites/airsimblog.wordpress.com/posts/?callback=?",
 						   function(data)
 						   {
-							   console.log(data);
 							   jquery.each(data.posts,function(i,item){
 								   jquery("<h3/>").attr("innerHTML", item.title).appendTo("#blogposts");
-								   jquery("<p/>").attr("innerHTML", item.date).appendTo("#postdate");
-								   jquery("<p/>").attr("innerHTML", item.content).appendTo("#postcontent");
+								   jquery("<p/>").attr("innerHTML", item.date).appendTo("#blogposts");
+								   jquery("<p/>").attr("innerHTML", item.content).appendTo("#blogposts");
 								   //document.getElementById(posttitle).value = data.posts[0].title;
 							   });
 						   });
