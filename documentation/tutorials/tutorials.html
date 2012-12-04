@@ -268,14 +268,14 @@ jquery(function() {
 	Each line represents a fare rule, identified by the first number of the line:
 	<table width="100%" border="0" style="font-size: 1em;">
 	<tr>
-	<td width="540px"><pre>Number of the fare rule<br/>Origin (3-char airport code)<br/>Destination (3-char airport code)<br/>Trip type (RT=round-trip and OW=one way))<br/>Start and End date of the validity period (yyyy-mm-dd)<br/>Start and End time of the validity period (hh:mm)<br/>Point-of-sale<br/>Chosen cabin ('F' for First, 'C' for Business, 'Y' for Economy)<br/>Channel (D=direct, I=indirect, N=online, F=offline)<br/></pre></td>
+	<td width="540px"><pre>Number of the fare rule<br/>Origin (3-char airport code)<br/>Destination (3-char airport code)<br/>Trip type ('RT'=round-trip and 'OW'=one way))<br/>Start and End date of the validity period (yyyy-mm-dd)<br/>Start and End time of the validity period (hh:mm)<br/>Point-of-sale<br/>Chosen cabin ('F' for First, 'C' for Business, 'Y' for Economy)<br/>Channel ('D'=direct, 'I'=indirect, 'N'=online, 'F'=offline)<br/></pre></td>
 	<td><pre>1;<br/>SIN;<br/>BKK;<br/>OW;<br/>2010-01-15; 2010-12-31;<br/>00:00; 23:59;<br/>SIN;<br/>Y;<br/>IN;</pre></td>
 	</tr>
 	</table>
 	The next parameters define the fare and its corresponding fare options:
 	<table width="100%" border="0" style="font-size: 1em;">
 	<tr>
-	<td width="540px"><pre>Advanced purchase (number of days)<br/>Saturday night stay option ("T" stands for true and "F" stands for false)<br/>Change fees option ("T" stands for true and "F" stands for false)<br/>Refundable criterion ("T" stands for true and "F" stands for false)<br/>Minimum stay duration (number of days)<br/>Fare amount</pre></td>
+	<td width="540px"><pre>Advanced purchase (number of days)<br/>Saturday night stay option ('T' stands for true and 'F' stands for false)<br/>Change fees option ('T' stands for true and 'F' stands for false)<br/>Refundable criterion ('T' stands for true and 'F' stands for false)<br/>Minimum stay duration (number of days)<br/>Fare amount</pre></td>
 	<td><pre>7;<br/>T;<br/>T;<br/>T;<br/>3;<br/>150;</pre></td>
 	</tr>
 	</table>
@@ -288,7 +288,7 @@ jquery(function() {
 	</table>
 	To sum up, each line of the fare input file tells us the price a customer will be asked to pay according to a lot of criteria such as:
 	<ul class="disc">
-		<li>the origin and destination of his travel (for instance from Singapore to Bangok in the first fare rule).</li>
+		<li>the origin and destination of his travel (for instance from Singapore to Bangkok in the first fare rule).</li>
 		<li>the type of his travel.</li>
 		<li>the date and time he is willing to travel (each fare rule has a date range and a time range of validity).</li>
 		<li>the place where he is buying the ticket, i.e. the point of sale ("ALL" meaning all points of sale).</li>
@@ -303,7 +303,39 @@ jquery(function() {
 	</ul>
 </div>
 <div id="YIELD_POPUP" title="Yield Input File" style="display:none">
-	The yield input file is composed of one or more lines, each line representing a yield rule:<br/>
+	The yield input file structure should look like the following sample:<br/>
+	<pre>1; SIN; BKK; OW; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 400.0; SQ; Y;<br/>2; SIN; BKK; OW; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 250.0; SQ; B;<br/>3; SIN; BKK; OW; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 160.0; SQ; M;<br/>4; SIN; BKK; RT; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 500.0; SQ; Y;<br/>5; SIN; BKK; RT; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 300.0; SQ; B;<br/>6; SIN; BKK; RT; 2009-01-01; 2012-06-01; 00:00; 23:59; ALL; Y; DC; 200.0; SQ; M;</pre>
+	Each line represents a yield rule, identified by the first number of the line:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Number of the yield rule<br/>Origin (3-char airport code)<br/>Destination (3-char airport code)<br/>Trip type ('RT'=round-trip and 'OW'=one way)<br/>Start and End date of the validity period (yyyy-mm-dd)<br/>Start and End time of the validity period (hh:mm)<br/>Point-of-sale ('ALL' meaning all points of sale).<br/>Chosen cabin ('F' for First, 'C' for Business, 'Y' for Economy)<br/>Channel ('DC' meaning all different channels)<br/></pre></td>
+	<td><pre>1;<br/>SIN;<br/>BKK;<br/>OW;<br/>2009-01-01; 2012-06-01;<br/>00:00; 23:59;<br/>SIN;<br/>Y;<br/>IN;</pre></td>
+	</tr>
+	</table>
+	The next parameter is the yield value:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Yield amount</pre></td>
+	<td><pre>400;</pre></td>
+	</tr>
+	</table>
+	Finally comes the airline and the class for which the yield is applicable:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Operating airline code<br/>Chosen booking class</pre></td>
+	<td><pre>SQ;<br/>Y;</pre></td>
+	</tr>
+	</table>
+	To sum up, each line of the yield input file tells us the value (useful for the revenue management system) a customer will be given according to a lot of criteria such as:
+	<ul class="disc">
+		<li>the origin and destination of his travel (for instance from Singapore to Bangkok in the first yield rule).</li>
+		<li>the type of his travel.</li>
+		<li>the date and time he is traveling (each yield rule has a date range and a time range of validity).</li>
+		<li>the place where he is buying the ticket, i.e. the point of sale.</li>
+		<li>his chosen cabin.</li>
+		<li>the channel of the booking described by a two letters code.</li>
+		<li>the operating airline and the chosen booking class.</li>
+	</ul>
 </div>
 <div id="OD_POPUP" title="Origin and Destination Input File" style="display:none">
 	The origin and destination input file is composed of one or more lines, each line representing a ...:<br/>
