@@ -16,9 +16,9 @@ var jquery = jQuery;
 jquery(function() {
         jquery( "#accordion" ).accordion({
             collapsible: true,
-			active: false,
-			heightStyle:"content"
-		});
+            active: false,
+            heightStyle:"content"
+        });
     });
 </script>
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
@@ -197,17 +197,16 @@ jquery(function() {
             	</div>
             	<h3 style="color:#FFF;">Simulation input files</h3>
             	<div>
-            	<ul class="disc">
-            		<li>Demand Input file</li><br/>
-            		 The demand input file is composed of one or more lines, each line representing a demand stream.<br/><br/>    	
-                   	<li>Schedule Input File</li><br/>
-                	<li>Fare Input file</li><br/>
-                	<li>Yield Input File</li><br/>
-                	<li>Origin and Destination Input File</li><br/>
-            	</ul><br/>
-            	</div>
-            	</div>
+            		<ul class="disc">
+            			<li><a href="javascript:showPopup('#DEMAND_POPUP')">Demand Input File</a></li>
+            			<li><a href="javascript:showPopup('#SCHEDULE_POPUP')">Schedule Input File</a></li>
+            			<li><a href="javascript:showPopup('#FARE_POPUP')">Fare Input File</a></li>
+            			<li><a href="javascript:showPopup('#YIELD_POPUP')">Yield Input File</a></li>
+            			<li><a href="javascript:showPopup('#OD_POPUP')">Origin and Destination Input File</a></li>
+            		</ul>
+                </div>	
             </div>
+		  </div>	
         </div>
       </div>
     </div>
@@ -217,11 +216,109 @@ jquery(function() {
   </div>
   <footer>&copy; 2012 AirSim</footer>
 </div>
+<div id="DEMAND_POPUP" title="Demand Input File" style="display:none">
+	The demand input file is composed of one or more lines, each line representing a demand stream:<br/>
+	<pre>2009-01-01; 2011-03-03; 1000000; SIN; BKK; Y; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2;<br/>0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 0.5; 50;<br>06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 160; 15:0, 60:1; 330:0, 40:0.2, 20:0.55, 10:0.75, 1:1; N, 49.0, 7.0;</pre>
+	Let's have a look at each attribute of the demand stream above.
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Start date of the departure date period (yyyy-mm-dd)<br/>End date of the departure date period (yyyy-mm-dd)<br/>Day of the week</pre></td>
+	<td><pre>2009-01-01;<br/>2011-03-03;<br/>1000000;</pre></td>
+	</tr>
+	</table>
+	Those three attributes are used to compute the list of dates at which passengers are willing to travel. In this example, we are going to generate booking requests for each Monday between 2009-01-01 and 2011-03-03.<br/>
+	For this demand stream, passengers wish to travel from a certain origin to a certain destination within a certain cabin:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Origin (3-char airport code)<br/>Destination (3-char airport code) <br/>Preferred cabin ('F' for First, 'C' for Business, 'Y' for Economy)</pre></td>
+	<td><pre>SIN;<br/>BKK;<br/>Y;</pre></td>
+	</tr>
+	</table>
+	The next parameters define distributions with Probability Masses:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Point-of-sale (row stands for rest of the world)<br/>Channel (D=direct, I=indirect, N=online, F=offline)<br/>Trip type (RO=outbound of round-trip, RI=inbound, OW=one way)<br/>Stay duration (number of days)<br/>Frequent flyer (P=Platinum, G=Gold, S=Silver, M=Member, N=None)<br/>Change fees restriction and its disutility value<br/>Non refundable restriction and its disutility value</pre></td>
+	<td><pre>SIN:0.7, BKK:0.2, row:0.1;<br/>DF:0.1, DN:0.3, IF:0.4, IN:0.2; <br/>RO:0.6, RI:0.2, OW:0.2; <br/>0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; <br/>P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; <br/>0.5; 50; <br/>0.5; 50; </pre></td>
+	</tr>
+	</table>
+	Then we encounter parameters defined as continuous cumulative distributions:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Preferred departure time (hh.mm)<br/>WTP (moneraty value)<br/>Value of time<br/>Arrival pattern (DTD as a positive value)<br/></td>
+	<td><pre>06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1;<br/>160<br/>15:0, 60:1; <br/>330:0, 40:0.2, 20:0.55, 10:0.75, 1:1; </pre></td>
+	</tr>
+	</table>
+	Finally, we find the type of distribution followed by the number of requests to be generated for each specified departure date:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Distribution of number of requests</pre></td>
+	<td><pre>N, 49.0, 7.0</pre></td>
+	</tr>
+	</table>
+</div>
+<div id="SCHEDULE_POPUP" title="Schedule Input File" style="display:none">
+	The schedule input file is composed of one or more lines, each line representing a flight period:<br/>
+</div>
+<div id="FARE_POPUP" title="Fare Input File" style="display:none">
+	The fare input file structure should look like the following sample:<br/>
+	<pre>1; SIN; BKK; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; SIN; Y; IN; 7; T; T; T; 3; 150.0; SQ; Y;<br/>2; SIN; BKK; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; BKK; Y; IN; 7; T; T; T; 3; 150.0; SQ; Y;<br/>3; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; SIN; Y; IN; 7; T; T; T; 3; 150.0; SQ; Y;<br/>4; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; HND; Y; IN; 7; T; T; T; 3; 150.0; SQ; Y;<br/>5; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; ROW; Y; IN; 7; T; T; T; 3; 150.0; SQ; Y;<br/>6; SIN; BKK; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; SIN; Y; IF; 7; T; T; T; 3; 150.0; SQ; Y;<br/>7; SIN; BKK; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; BKK; Y; IF; 7; T; T; T; 3; 150.0; SQ; Y;<br/>8; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; SIN; Y; IF; 7; T; T; T; 3; 150.0; SQ; Y;<br/>9; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; HND; Y; IF; 7; T; T; T; 3; 150.0; SQ; Y;<br/>10; SIN; HND; OW; 2010-01-15; 2010-12-31; 00:00; 23:59; ROW; Y; IF; 7; T; T; T; 3; 150.0; SQ; Y;</pre>
+	Each line represents a fare rule, identified by the first number of the line:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Number of the fare rule<br/>Origin (3-char airport code)<br/>Destination (3-char airport code)<br/>Trip type (RT=round-trip and OW=one way))<br/>Start and End date of the validity period (yyyy-mm-dd)<br/>Start and End time of the validity period (hh:mm)<br/>Point-of-sale<br/>Chosen cabin ('F' for First, 'C' for Business, 'Y' for Economy)<br/>Channel (D=direct, I=indirect, N=online, F=offline)<br/></pre></td>
+	<td><pre>1;<br/>SIN;<br/>BKK;<br/>OW;<br/>2010-01-15; 2010-12-31;<br/>00:00; 23:59;<br/>SIN;<br/>Y;<br/>IN;</pre></td>
+	</tr>
+	</table>
+	The next parameters define the fare and its corresponding fare options:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Advanced purchase (number of days)<br/>Saturday night stay option ("T" stands for true and "F" stands for false)<br/>Change fees option ("T" stands for true and "F" stands for false)<br/>Refundable criterion ("T" stands for true and "F" stands for false)<br/>Minimum stay duration (number of days)<br/>Fare amount</pre></td>
+	<td><pre>7;<br/>T;<br/>T;<br/>T;<br/>3;<br/>150;</pre></td>
+	</tr>
+	</table>
+	Finally comes the airline and the class for which the fare is applicable:
+	<table width="100%" border="0" style="font-size: 1em;">
+	<tr>
+	<td width="540px"><pre>Operating airline code<br/>Chosen booking class</pre></td>
+	<td><pre>SQ;<br/>Y;</pre></td>
+	</tr>
+	</table>
+	To sum up, each line of the fare input file tells us the price a customer will be asked to pay according to a lot of criteria such as:
+	<ul class="disc">
+		<li>the origin and destination of his travel (for instance from Singapore to Bangok in the first fare rule).</li>
+		<li>the type of his travel.</li>
+		<li>the date and time he is willing to travel (each fare rule has a date range and a time range of validity).</li>
+		<li>the place where he is buying the ticket, i.e. the point of sale ("ALL" meaning all points of sale).</li>
+		<li>his chosen cabin.</li>
+		<li>the channel of the booking described by a two letters code ("DC" meaning all different channels).</li>
+		<li>the date when he wants to buy the ticket, i.e. the advanced purchase required in number of days.</li>
+		<li>the saturday night stay option, i.e. is he staying a Saturday night between his inbound trip and his outbound one?</li>
+		<li>the change fees option, i.e. are there fees to change his ticket?</li>
+		<li>the refundable criterion, i.e. is the ticket refundable?</li>
+		<li>the number of days he is willing to stay at the destination location (each fare rule has a minimum stay requirement in number of days).</li>
+		<li>the operating airline and the chosen booking class.</li>
+	</ul>
+</div>
+<div id="YIELD_POPUP" title="Yield Input File" style="display:none">
+	The yield input file is composed of one or more lines, each line representing a yield rule:<br/>
+</div>
+<div id="OD_POPUP" title="Origin and Destination Input File" style="display:none">
+	The origin and destination input file is composed of one or more lines, each line representing a ...:<br/>
+</div>
+
 </body>
 <script>
 	function accordionShowGeneralSection()
 		{
-			jquery( "#accordion" ).accordion( "option", "active", 0 );
+			jquery( "#accordion" ).accordion("option", "active", 0 );
 		}
-</script
-></html>
+	function showPopup(divId)
+	    {
+			jquery( divId ).dialog({
+				width: 970,
+				modal: true,
+				show: "blind"
+			});
+		}
+</script>
+</html>
