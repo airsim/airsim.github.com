@@ -1,0 +1,147 @@
+a, a:visited {
+	color: #2080B7;
+}
+
+a:hover, a:active {
+	color: #186089;
+}
+
+#sidebar-container a, #sidebar-container a:visited {
+	color: #2080B7;
+}
+
+#sidebar-container a:hover, #sidebar-container a:active {
+	color: #186089;
+}
+
+body {
+	background-color: #E9E9E8;
+}
+
+#container, #content li:before  {
+	color: #7B7B7B;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+	color: #565656;
+}
+
+#sidebar-container, .blog-archive-link-enabled:before, .blog-category-link-enabled:before {
+	color: #7B7B7B;
+}
+
+#header {
+	background-color: #AEB2B9;
+}
+
+#sidebar {
+	border-top-color: #CBCBCB;	
+}
+
+a.myBadge:hover{
+	color: #367CB3;
+}
+
+#extraContent2-trigger:hover {
+	color: #367CB3;
+}
+
+#extraContent2-trigger.active-icon {
+	background-color: #367CB3;
+}
+
+.blogBadge {
+	background-color: #8D9094;
+}
+
+#extraContent1 {
+	color: #FFFFFF;
+}
+
+#extraContent2 {
+	color: #727272;
+	background-color: #D8D8D8;
+}
+
+#extraContent3 {
+	color: #7B7B7B;
+}
+
+#extraContent4 {
+	color: #7B7B7B;
+}
+
+#extraContent2-trigger {
+	color: #7B7B7B;
+	background-color: #D8D8D8;
+}
+
+.form-input-field:focus {
+	border-color: #2080B7;
+}
+
+#extraContent5 {
+	background-color: #F6F6F6;
+	color: #7B7B7B;
+	border-bottom-color: #EEEEEE;
+}
+
+#extraContent5 h1, #extraContent5 h2, #extraContent5 h3, #extraContent5 h4, #extraContent5 h5, #extraContent5 h6 {
+	color: #565656;
+}
+
+#extraContent5 a, #extraContent5 a:visited {
+	color: #2080B7;
+}
+
+#extraContent5 a:hover, #extraContent5 a:active {
+	color: #186089;
+}
+
+#title-bar {
+	background-color: #2B2D33;
+}
+
+#title-bar h1 {
+	color: #FFFFFF;
+}
+
+#title-bar h2 {
+	color: #AEAEAD;
+	border-left-color: #AEAEAD;
+}
+
+#sidebar {
+	background-color: #FFFFFF;
+}
+
+footer {
+	color: #7B7B7B;
+}
+
+footer a, footer a:visited {
+	color: #2080B7;
+}
+
+footer a:hover, footer a:active {
+	color: #186089;
+}
+
+
+
+nav#main-navigation ul li a:hover, nav#main-navigation>.inner>ul>li>a.current, nav#main-navigation>.inner>ul>li>a.currentAncestor, nav#main-navigation ul ul li a.current, nav#main-navigation ul ul li a.currentAncestor {
+	background: %colour_nav_color_bkg%;
+}
+
+nav#main-navigation>.inner>ul>li.hasChild>a:hover, nav#main-navigation>.inner>ul>li.hasChild>a.current, nav#main-navigation>.inner>ul>li.hasChild>a.currentAncestor, nav#main-navigation ul ul li.hasChild>a:hover, nav#main-navigation ul ul li.hasChild>a.current, nav#main-navigation ul ul li.hasChild>a.currentAncestor {
+	background: %colour_nav_color_bkg%;
+}
+
+
+nav#main-navigation>.inner>ul>li#home-button>a {
+	background: %colour_nav_color_bkg%;
+}
+
+nav#main-navigation>.inner>ul>li#home-button>a:hover, nav#main-navigation>.inner>ul>li#home-button>a.current, nav#main-navigation>.inner>ul>li#home-button>a.currentAncestor {
+	background: %colour_nav_color_bkg%;
+}

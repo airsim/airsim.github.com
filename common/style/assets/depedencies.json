@@ -1,0 +1,15 @@
+{
+	"name":"Dsim",
+	"children": [
+	{
+		"name":"SimCRS",
+		"children":[
+			{"name":"AirInv", "size": 2000},
+			{"name":"AirSched", "size": 2000},
+			{"name":"SimFQT", "size": 2000}
+			]
+		}
+	]
+}
+		
+	
