@@ -1,0 +1,34 @@
+{
+	"name":"TvlSim", "size": 20000,
+	"children": [
+		{
+			"name":"SimCRS", "size": 2000,
+				"children":[
+					{"name":"AirInv", "size": 2000,
+						"children":[
+						{"name":"SEvMgr", "size": 2000,"children":[{"name":"StdAir", "size": 2000}]},
+						{"name":"Rmol", "size": 2000,"children":[{"name":"AirRac", "size": 2000},{"name":"StdAir", "size": 2000}]},
+						{"name":"AirRAC", "size": 2000,"children":[{"name":"StdAir", "size": 2000}]},
+						{"name":"StdAir", "size": 2000}
+					]},
+					{"name":"AirSched", "size": 2000,"children":{"name":"StdAir", "size": 2000}},
+					{"name":"SimFQT", "size": 2000,"children":{"name":"StdAir", "size": 2000}},
+					{"name":"StdAir", "size": 2000}
+					]
+		},
+		{
+			"name":"TravelCCM", "size": 2000, "children":{"name":"StdAir", "size": 2000}
+		},
+		{
+			"name":"TraDemGen", "size": 2000, 
+				"children":[
+							{"name":"StdAir",  "size": 2000},
+							{"name":"SEvMgr","size": 2000,
+								"children":{"name":"StdAir", "size": 2000}}]
+		},
+		{
+			"name":"StdAir",  "size": 2000
+		}
+	]
+}
+		

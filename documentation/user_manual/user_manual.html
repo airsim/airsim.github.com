@@ -70,7 +70,7 @@ jquery(function() {
 <div id="title-bar">
   <div class="inner">
     <div id="site-logo"><img src="../../common/images/airsim_logo.png" width="102" height="102" alt="Site logo"/></div>
-    <h1>AirSim</h1>
+    <h1>Travel Simulator</h1>
     <h2></h2>
   </div>
   <a href="https://github.com/airsim/metasim" target="_blank">
@@ -128,7 +128,7 @@ jquery(function() {
       <h3 id="sidebar-title"></h3>
       <h5>More on GitHub</h5>
       <br />
-      Go and have a look on <a href="https://github.com/airsim" rel="self">GitHub</a> for discovering the whole list of AirSim repositories.
+      Go and have a look on <a href="https://github.com/airsim" rel="self">GitHub</a> for discovering the whole list of Travel Simulator repositories.
       <div id="archives"> </div>
       <div id="extraContent4">
         <div id="extraContent4TopperImage"></div>
@@ -154,12 +154,12 @@ jquery(function() {
         </div>
         <div id='stacks_out_3_page5' class='stacks_out'>
           <div id='stacks_in_3_page5' class='stacks_in'><br />
-            For a quick and high level description of AirSim and all the modules, you are in the right place. <br /><br />
-            To setup and get started with AirSim or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">Getting Started</a>  page where you will find step by step tutorials and screencasts.<br /><br />
+            For a quick and high level description of Travel Simulator and all the modules, you are in the right place. <br /><br />
+            To setup and get started with Travel Simulator or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">Getting Started</a>  page where you will find step by step tutorials and screencasts.<br /><br />
             <div id="accordion" style="padding:0px">
             <h3 style="color:#FFF;">Repositories List</h3>
             <div>
-            <strong><a href="https://github.com/airsim/dsim" rel="self">DSim</a></strong>: C++ Airline Market Simulator. DSim uses TraDemGen to generate booking requests, then calls SimCRS to build 
+            <strong><a href="https://github.com/airsim/tvlsim" rel="self">TvlSim</a></strong>: C++ Airline Market Simulator. TvlSim uses TraDemGen to generate booking requests, then calls SimCRS to build 
 			the corresponding travel solution list (a travel solution is made of a segment path obtained from the schedules, as well as the corresponding prices and availabilities), asks TravelCCM 
 			to make a choice among the travel solution list and finally comes back to SimCRS to make a potential sell.<br />
             <br />
@@ -208,15 +208,15 @@ jquery(function() {
             <br />
             <strong><a href="https://github.com/airsim/Dynamic-Pricing-Studies" rel="self">Dynamic-Pricing-Studies</a></strong>: Dynamic Pricing studies.<br />
             <br />
-            <strong><a href="https://github.com/airsim/airsim.github.com" rel="self">AirSim</a></strong>: this very website.<br />
+            <strong><a href="https://github.com/airsim/airsim.github.com" rel="self">Travel Simulator</a></strong>: this very website.<br />
             </div>
             <h3 style="color:#FFF;">Dependencies tree</h3>
-            <div>
+            <div id="dtreesvg">
             Dependencies tree
             </div>
             <h3 style="color:#FFF;">Simulation input files</h3>
             <div>
-            Here is a short description of each input file you may have to create when dealing with one or more AirSim modules.
+            Here is a short description of each input file you may have to create when dealing with one or more Travel Simulator modules.
             		<ul class="disc">
             			<li><a href="javascript:showPopup('#DEMAND_POPUP')">Demand Input File</a></li>
             			<li><a href="javascript:showPopup('#SCHEDULE_POPUP')">Schedule Input File</a></li>
@@ -233,7 +233,7 @@ jquery(function() {
     <div id="breadcrumb"></div>
     <div class="content-pop-shadow"></div>
   </div>
-  <footer>&copy; 2012 AirSim</footer>
+  <footer>&copy; 2012 Travel Simulator</footer>
 </div>
 
 <div id="DEMAND_POPUP" title="Demand Input File" style="display:none">
@@ -383,73 +383,70 @@ jquery(function() {
 		
 	function drawDepedencies()
 	{
-		var w = 600,
-			h = 600,
-			x = d3.scale.linear().range([0, w]),
-			y = d3.scale.linear().range([0, h]);
+		var width = 400,
+			height = 500,
+			radius = Math.min(width, height) / 2,
+			color = d3.scale.category20c();
 		
-		var vis = d3.select("#body").append("div")
-			.attr("class", "chart")
-			.style("width", w + "px")
-			.style("height", h + "px")
-		  .append("svg:svg")
-			.attr("width", w)
-			.attr("height", h);
+		var svg = d3.select("#dtreesvg-").append("svg")// remove "-" when completed
+			.attr("width", width)
+			.attr("height", height)
+		  	.append("g")
+			.attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
 		
 		var partition = d3.layout.partition()
-			.value(function(d) { return d.size; });
+			.sort(null)
+			.size([2 * Math.PI, radius * radius])
+			.value(function(d) { return 1; });
 		
-		d3.json("../../common/style/assets/depedencies.json", function(root) {
-		  var g = vis.selectAll("g")
-			  .data(partition.nodes(root))
-			.enter().append("svg:g")
-			  .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; })
-			  .on("click", click);
+		var arc = d3.svg.arc()
+			.startAngle(function(d) { return d.x; })
+			.endAngle(function(d) { return d.x + d.dx; })
+			.innerRadius(function(d) { return Math.sqrt(d.y); })
+			.outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 		
-		  var kx = w / root.dx,
-			  ky = h / 1;
+		d3.json("../../common/depedencies.json", function(root) {
+			var path = svg.datum(root).selectAll("path")
+			.data(partition.nodes)
+			.enter().append("path")
+			.attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+			.attr("d", arc)
+			.style("stroke", "#fff")
+			.style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+			.style("fill-rule", "evenodd")
+			.each(stash);
 		
-		  g.append("svg:rect")
-			  .attr("width", root.dy * kx)
-			  .attr("height", function(d) { return d.dx * ky; })
-			  .attr("class", function(d) { return d.children ? "parent" : "child"; });
+		  d3.selectAll("input").on("change", function change() {
+			var value = this.value === "count"
+				? function() { return 1; }
+				: function(d) { return d.size; };
 		
-		  g.append("svg:text")
-			  .attr("transform", transform)
-			  .attr("dy", ".35em")
-			  .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-			  .text(function(d) { return d.name; })
-		
-		  d3.select(window)
-			  .on("click", function() { click(root); })
-		
-		  function click(d) {
-			if (!d.children) return;
-		
-			kx = (d.y ? w - 40 : w) / (1 - d.y);
-			ky = h / d.dx;
-			x.domain([d.y, 1]).range([d.y ? 40 : 0, w]);
-			y.domain([d.x, d.x + d.dx]);
-		
-			var t = g.transition()
-				.duration(d3.event.altKey ? 7500 : 750)
-				.attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
-		
-			t.select("rect")
-				.attr("width", d.dy * kx)
-				.attr("height", function(d) { return d.dx * ky; });
-		
-			t.select("text")
-				.attr("transform", transform)
-				.style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; });
-		
-			d3.event.stopPropagation();
-		  }
-		
-		  function transform(d) {
-			return "translate(8," + d.dx * ky / 2 + ")";
-		  }
+			path
+				.data(partition.value(value).nodes)
+			  	.transition()
+				.duration(1500)
+				.attrTween("d", arcTween);
+		  });
 		});
+		
+		// Stash the old values for transition.
+		function stash(d) {
+		  d.x0 = d.x;
+		  d.dx0 = d.dx;
+		}
+		
+		// Interpolate the arcs in data space.
+		function arcTween(a) {
+		  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+		  return function(t) {
+			var b = i(t);
+			a.x0 = b.x;
+			a.dx0 = b.dx;
+			return arc(b);
+		  };
+		}
+		
+		d3.select(self.frameElement).style("height", height + "px");
 	}
 </script>
 </html>
