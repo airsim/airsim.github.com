@@ -144,7 +144,7 @@ jquery(function() {
     <div id='stacks_out_47_page5' class='stacks_top'>
       <div id='stacks_in_47_page5' class='stacks_in'>
         <div id='stacks_in_102_page1' class='stacks_in'>
-          <h3>Documention</h3>
+          <h3>User manual</h3>
         </div>
       </div>
       <div id='stacks_out_62_page1' class='stacks_out'>
@@ -152,26 +152,21 @@ jquery(function() {
           <div class='stacks_div stacks_float_right'>
             <div class='centered_image' ></div>
           </div>
-          Welcome to the documentation section. You should  find all the information you need about the Travel Simulator in these pages.<br />
-          <br />
-          For a quick and high level description of Travel Simulator and all the modules check the <a href="user_manual/user_manual.html" rel="self" title="User Manual">User Manual</a>.<br />
-          <br />
-          To setup and get started with Travel Simulator or one of the modules have a look at the <a href="getting_started/getting_started.html" rel="self" title="Guides">Guides</a> page where you will find step by step tutorials and screencasts.<br />
-          <br />
-          Still have a question? The <a href="faq/faq.html" rel="self" title="FAQ">F.A.Q.</a> is here. Still no answer to your question? Then feel free to contact the <a href="../../community/team/team.html" rel="self" title="Team">team</a>.</div>
+          <p>Welcome to the documentation section. You should  find all the information you need about the Travel Simulator in these pages. To setup and get started with theTravel Simulator or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">getting started</a> page. For step by step instructions and exemples on how to use all the modules the <a href="../tutorials/tutorials.html">tutorials</a> page is what you are looking for.<br /><br />
+            For a quick and high level description of Travel Simulator and all the modules, you are in the right place. 
+            A list of the Travel Simulator's modules and a brief description of them is available in the <a href="javascript:accordionShowGeneralSection(0)">repositories list</a>. <br/><br/>
+            The <a href="javascript:accordionShowGeneralSection(1)">depedencies tree</a> does the tought job of showing you whom needs what.
+            <br /><br />
+            Last but not least come the <a href="javascript:accordionShowGeneralSection(2)">simulation input files</a> that are mandatory for some of the Travel Simulator modules.  <br /> <br />
+            Still have a question? The <a href="faq/faq.html" rel="self" title="FAQ">F.A.Q.</a> is here. </p>
+</div>
       </div>
     </div>
     <br>
-    <div id='stacks_out_1_page5' class='stacks_out'>
-      <div id='stacks_in_1_page5' class='stacks_in'>
-        <h3>User manual</h3>
-      </div>
-    </div>
+    
     <div id='stacks_out_3_page5' class='stacks_out'>
-      <div id='stacks_in_3_page5' class='stacks_in'> For a quick and high level description of Travel Simulator and all the modules, you are in the right place. <br />
-        <br />
-        To setup and get started with Travel Simulator or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">Getting Started</a> page where you will find step by step tutorials and screencasts.<br />
-        <br />
+      <div id='stacks_in_3_page5' class='stacks_in'>
+        
         <div id="accordion" style="padding:0px">
           <h3 style="color:#FFF;">Repositories List</h3>
           <div> <strong><a href="https://github.com/airsim/tvlsim" rel="self">TvlSim</a></strong>: C++ Airline Market Simulator. TvlSim uses TraDemGen to generate booking requests, then calls SimCRS to build 
@@ -226,7 +221,9 @@ jquery(function() {
             <strong><a href="https://github.com/airsim/airsim.github.com" rel="self">Travel Simulator</a></strong>: this very website.<br />
           </div>
           <h3 style="color:#FFF;">Dependencies tree</h3>
-          <div id="dtreesvg"> Dependencies tree </div>
+          <div id="dtreesvg"> 
+            <div align="center"><img src="files/tvlsim_dependencies.png" width="550" height="495" alt="depedencies"></div>
+          </div>
           <h3 style="color:#FFF;">Simulation input files</h3>
           <div> Here is a short description of each input file you may have to create when dealing with one or more Travel Simulator modules.
             <ul class="disc">
@@ -459,5 +456,12 @@ jquery(function() {
 		
 		d3.select(self.frameElement).style("height", height + "px");
 	}
+	
+	
+	function accordionShowGeneralSection(section)
+		{
+			jquery( "#accordion" ).accordion("option", "active", section );
+		}
+
 </script>
 </html>
