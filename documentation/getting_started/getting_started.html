@@ -181,7 +181,7 @@ jquery(function() {
                 Select the .OVA file you just downloaded and import the machine.<br/>
                 Once Virtual Box finished the setup simply run it. </div>
               <h3 style="color:#FFF;">Packaged</h3>
-              <div>
+              <div style="padding-left:5px; padding-right:5px">
                 <h4>Packaged Version</h4>
                 <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../../online_sim/onlinedemo.html">online version</a> or download the <a href="../../download/download.html">virtual box appliance</a> to get all you need in one big package. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
                 <h5>Metasim installation</h5>
@@ -192,12 +192,63 @@ jquery(function() {
                 <pre>cd ~/dev/metasimgit</pre>
                 <p>Copy and edit the metasim.yaml file with your own details (check you firewall settings if necessary):</p>
                 <pre>cp metasim.yaml.sample metasim.yaml</pre>
+                <p>After editing the metasim.yaml file, it should look like:</p>
+                <pre>
+# MetaSim configuration file
+default_base_repo: 'git@github.com:airsim'
+default_branch: trunk
+cmake_args: '-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON \
+-DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=ON'
+publish_path: /tmp/metasim
+components:
+  - name: tvlsim
+    repo: 'https://github.com/airsim/tvlsim.git'
+    deps: [stdair, airrac, rmol, airinv, simfqt, airsched, simcrs, trademgen, sevmgr, travelccm]  
+  - name: simcrs 
+    repo: 'https://github.com/airsim/simcrs.git'
+    deps: [stdair, airrac, rmol, sevmgr, airinv, simfqt, airsched] 
+  - name: simlfs
+    repo: 'https://github.com/airsim/simlfs.git'
+    deps: [stdair, airrac, rmol, sevmgr, airinv, simfqt]  
+  - name: avlcal 
+    repo: 'https://github.com/airsim/avlcal.git'
+    deps: [stdair, airrac, rmol, airinv]   
+  - name: airinv
+    repo: 'https://github.com/airsim/airinv.git'
+    deps: [stdair, airrac, rmol, sevmgr]  
+  - name: trademgen
+    repo: 'https://github.com/airsim/trademgen.git'
+    deps: [stdair, sevmgr]   
+  - name: rmol
+    repo: 'https://github.com/airsim/rmol.git'
+    deps: [stdair, airrac] 
+  - name: simfqt
+    repo: 'https://github.com/airsim/simfqt.git'
+    deps: [stdair]
+  - name: airsched
+    repo: 'https://github.com/airsim/airsched.git'
+    deps: [stdair]
+  - name: travelccm
+    repo: 'https://github.com/airsim/travelccm.git'
+    deps: [stdair] 
+  - name: sevmgr
+    repo: 'https://github.com/airsim/sevmgr.git'
+    deps: [stdair] 
+  - name: airrac
+    repo: 'https://github.com/airsim/airrac.git'
+    deps: [stdair]
+  - name: stdair 
+    repo: 'https://github.com/airsim/stdair.git'
+    deps: {}
+                </pre>	
                 <p>Clone, configure, install and check all the components with the commands:</p>
                 <pre>rake clone && rake configure && rake install && rake check</pre>
                 <p>To have the list of all available commands, try:</p>
                 <pre>rake --tasks</pre>
                 <p>Run the local binary version to perform your first simulation:</p>
                 <pre>./workspace/build/tvlsim/tvlsim/simulate</pre>
+                If encounter any problem while opening a database connection, run the following batch scripts (before launching again the simulate script):
+                <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
                 Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.</div>
             <h3 style="color:#FFF;">Module by Module Installation</h3>
             <div style="padding-left:5px; padding-right:5px">
@@ -235,6 +286,8 @@ jquery(function() {
                 <pre>make & make install && make check</pre>
                 <p>Run the local binary version to generate your first booking requests:</p>
                 <pre>./trademgen/trademgen_generateDemand -b</pre>
+                If encounter any problem while opening a database connection, run the following batch scripts (before launching again the generateDemand script):
+                <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
                 Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.
               </div>
             </div>

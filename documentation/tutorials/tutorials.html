@@ -203,6 +203,13 @@ jquery(function() {
             	To quit the interactive scenario:
             	<pre>quit</pre>
             	</div>
+            	<h3 style="color:#FFF;">Focus on each module</h3>
+            	<div> Here is a short tutorial list to help you start with each Travel Simulator module.
+            	<ul class="disc">
+            	<li><a href="javascript:showPopup('#SIMFQT_POPUP')">SimFQT</a></li>
+            	<li><a href="javascript:showPopup('#POPUP')">...</a></li>
+            </ul>
+          </div>
             </div>
 		  </div>	
         </div>
@@ -214,8 +221,18 @@ jquery(function() {
   </div>
   <footer>&copy; 2012 Travel Simulator</footer>
 </div>
+<div id="SIMFQT_POPUP" title="Simulator Fare Quote" style="display:none">
+</div>
 </body>
-<script>
+<script>	
+	function showPopup(divId)
+	{
+		jquery( divId ).dialog({
+			width: 970,
+			modal: true,
+			show: "blind"
+		});
+	}
 	function accordionShowGeneralSection()
 		{
 			jquery( "#accordion" ).accordion("option", "active", 0 );
