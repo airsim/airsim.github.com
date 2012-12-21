@@ -60,7 +60,7 @@ jquery(function() {
        	<link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/ie.css"  />  
 		<![endif]-->
 </head>
-<body onLoad="drawDepedencies()">
+<body>
 <div id="extraContent6">
   <div id="modal-close-button" class="shadow icon-remove"></div>
   <div id="extraContainer6"></div>
@@ -137,7 +137,7 @@ jquery(function() {
       <div id="extraContainer3"></div>
     </div>
   </div>
-  <div id="content" class="shadow">
+  <div id="content" class="shadow" style="padding-left:30px; padding-right:30px;">
     <div id="extraContent5">
       <div id="extraContainer5" class="clearfix"></div>
     </div>
@@ -156,7 +156,7 @@ jquery(function() {
           <p>Welcome to the documentation section. You should  find all the information you need about the Travel Simulator in these pages. To setup and get started with theTravel Simulator or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">getting started</a> page. For step by step instructions and exemples on how to use all the modules the <a href="../tutorials/tutorials.html">tutorials</a> page is what you are looking for.<br /><br />
             For a quick and high level description of Travel Simulator and all the modules, you are in the right place. 
             A list of the Travel Simulator's modules and a brief description of them is available in the <a href="javascript:accordionShowGeneralSection(0)">repositories list</a>. <br/><br/>
-            The <a href="javascript:accordionShowGeneralSection(1)">depedencies tree</a> does the tought job of showing you whom needs what.
+            The <a href="javascript:accordionShowGeneralSection(1)">depedencies diagram</a> does the tought job of showing you whom needs what.
             <br /><br />
             Last but not least come the <a href="javascript:accordionShowGeneralSection(2)">simulation input files</a> that are mandatory for some of the Travel Simulator modules.  <br /> <br />
             Still have a question? The <a href="../faq/faq.html" rel="self" title="FAQ">F.A.Q.</a> is here. </p>
@@ -221,9 +221,10 @@ jquery(function() {
             <br />
             <strong><a href="https://github.com/airsim/airsim.github.com" rel="self">Travel Simulator</a></strong>: this very website.<br />
           </div>
-          <h3 style="color:#FFF;">Dependencies tree</h3>
-          <div id="dtreesvg" style="padding-left:5px; padding-right:5px">
-            <div align="center"><img src="files/tvlsim_dependencies.png" width="1046" height="406" alt="depedencies"></div>
+          <h3 style="color:#FFF;">Dependencies diagram</h3>
+          <div id="dtreesvg" style="padding-left:0px; padding-right:0px">
+          	&nbsp;&nbsp;Click on diagram to zoom.<br/><br/>
+            <div align="center"><img src="files/tvlsim_dependencies_600.png" width="600" height="204" alt="depedencies" onClick="javascript:showPopup('#DEPEDENCIES_POPUP')"></div>
           </div>
           <h3 style="color:#FFF;">Simulation input files</h3>
           <div> Here is a short description of each input file you may have to create when dealing with one or more Travel Simulator modules.
@@ -379,90 +380,27 @@ jquery(function() {
     <li>the operating airline and the chosen booking class.</li>
   </ul>
 </div>
+
+<div id="DEPEDENCIES_POPUP" title="Depedencies Diagram" style="display:none">
+	<img src="files/tvlsim_dependencies.png" width="1060" height="406" alt="Depedencies">
+</div>
+
 </body>
 <script>
 	function showPopup(divId)
 	{
 		jquery( divId ).dialog({
-			width: 970,
+			width: 'auto',
 			modal: true,
 			show: "blind"
 		});
 	}
 		
-	function drawDepedencies()
-	{
-		var width = 400,
-			height = 500,
-			radius = Math.min(width, height) / 2,
-			color = d3.scale.category20c();
-		
-		var svg = d3.select("#dtreesvg-").append("svg")// remove "-" when completed
-			.attr("width", width)
-			.attr("height", height)
-		  	.append("g")
-			.attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
-		
-		var partition = d3.layout.partition()
-			.sort(null)
-			.size([2 * Math.PI, radius * radius])
-			.value(function(d) { return 1; });
-		
-		var arc = d3.svg.arc()
-			.startAngle(function(d) { return d.x; })
-			.endAngle(function(d) { return d.x + d.dx; })
-			.innerRadius(function(d) { return Math.sqrt(d.y); })
-			.outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
-		
-		d3.json("../../common/depedencies.json", function(root) {
-			var path = svg.datum(root).selectAll("path")
-			.data(partition.nodes)
-			.enter().append("path")
-			.attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
-			.attr("d", arc)
-			.style("stroke", "#fff")
-			.style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-			.style("fill-rule", "evenodd")
-			.each(stash);
-		
-		  d3.selectAll("input").on("change", function change() {
-			var value = this.value === "count"
-				? function() { return 1; }
-				: function(d) { return d.size; };
-		
-			path
-				.data(partition.value(value).nodes)
-			  	.transition()
-				.duration(1500)
-				.attrTween("d", arcTween);
-		  });
-		});
-		
-		// Stash the old values for transition.
-		function stash(d) {
-		  d.x0 = d.x;
-		  d.dx0 = d.dx;
-		}
-		
-		// Interpolate the arcs in data space.
-		function arcTween(a) {
-		  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
-		  return function(t) {
-			var b = i(t);
-			a.x0 = b.x;
-			a.dx0 = b.dx;
-			return arc(b);
-		  };
-		}
-		
-		d3.select(self.frameElement).style("height", height + "px");
-	}
-	
 	
 	function accordionShowGeneralSection(section)
-		{
+	{
 			jquery( "#accordion" ).accordion("option", "active", section );
-		}
+	}
 
 </script>
 </html>
