@@ -280,8 +280,6 @@ components:
                 <p>As illustrated in the <a href="../user_manual/user_manual.html">dependency diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DWITH_SEVMGR_PREFIX=/home/[user]/dev/deliveries/sevmgr-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
                 Of course, you are supposed to have previously cloned, built and installed the SEvMgr library following exactly the same process as for StdAir. Do not forget that SEvMgr depends on StdAir as well!
-                <p>If encounter any problem, try:</p>
-                <pre>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/[user]/dev/deliveries/stdair-stable/lib</pre>
                 <p>Build, install the demand generation library and perform tests:</p>
                 <pre>make & make install && make check</pre>
                 <p>Run the local binary version to generate your first booking requests:</p>
