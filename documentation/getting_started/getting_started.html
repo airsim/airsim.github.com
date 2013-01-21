@@ -182,24 +182,32 @@ jquery(function() {
                 Once Virtual Box finished the setup simply run it. </div>
               <h3 style="color:#FFF;">Packaged</h3>
               <div style="padding-left:5px; padding-right:5px">
-                <h4>Packaged Version</h4>
-                <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../../online_sim/onlinedemo.html">online version</a> or download the <a href="../../download/download.html">virtual box appliance</a> to get all you need in one big package. If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide below.</p>
+              <h4>Packaged Version</h4>
+              </div>
+              <h3 style="color:#FFF;">Github</h3>
+              <div style="padding-left:5px; padding-right:5px">
+                <h4>Github project</h4>
+                <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../../online_sim/onlinedemo.html">online version</a> or download the <a href="../../download/download.html">virtual box appliance</a> to get all you need in one big package. </p>
+                <p>First of all, you need to <a href="https://help.github.com/articles/set-up-git"> install and set up git</a> within your working environment.</p>
+                <p>If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide <a href="#MODULE">below</a>.</p>
                 <h5>Metasim installation</h5>
                 <p>Enter the chosen working directory, for instance:</p>
-                <pre>cd ~/dev</pre>
+                <pre>mkdir -p ~/dev/sim<br />cd ~/dev/sim</pre>
                 <p>Clone the metasim project from the github environment:</p>
                 <pre>git clone git@github.com:airsim/metasim.git metasimgit</pre>
-                <pre>cd ~/dev/metasimgit</pre>
+                <pre>cd metasimgit</pre>
                 <p>Copy and edit the metasim.yaml file with your own details (check you firewall settings if necessary):</p>
                 <pre>cp metasim.yaml.sample metasim.yaml</pre>
+                Adapt metasim.yaml to your environment. In particular, you may turn off the 64bit library option as well as the generation of the GCOV/LCOV tests and of the documentation:
+                <pre>cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'</pre>
+                The avlcal and simlfs are not currently used; so they can be dropped without any other consequence.
                 <p>After editing the metasim.yaml file, it should look like:</p>
                 <pre>
 # MetaSim configuration file
 default_base_repo: 'git@github.com:airsim'
 default_branch: trunk
-cmake_args: '-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON \
--DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=ON'
-publish_path: /tmp/metasim
+cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
+publish_path: /dev/sim/metasimgit
 components:
   - name: tvlsim
     repo: 'https://github.com/airsim/tvlsim.git'
@@ -240,18 +248,41 @@ components:
   - name: stdair 
     repo: 'https://github.com/airsim/stdair.git'
     deps: {}
-                </pre>	
-                <p>Clone, configure, install and check all the components with the commands:</p>
-                <pre>rake clone && rake configure && rake install && rake check</pre>
-                <p>To have the list of all available commands, try:</p>
-                <pre>rake --tasks</pre>
+                </pre>
+                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies</a> first!</p>
+                <p>For instance, if you are working on Travel-CCM only, you can keep only 'travelccm' and 'stdair'. In this case the metasim file should look like:</p>
+                <pre>
+# MetaSim configuration file
+default_base_repo: 'git@github.com:airsim'
+default_branch: trunk
+cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
+publish_path: /dev/sim/metasimgit
+components:
+  - name: travelccm
+    repo: 'https://github.com/airsim/travelccm.git'
+    deps: [stdair] 
+  - name: stdair 
+    repo: 'https://github.com/airsim/stdair.git'
+    deps: {}
+                </pre>
+                <p>Then, you will need a minimum of development tools, including Ruby-gem based Rake, CMake, g++, Boost:</p>
+                <pre>sudo yum -y install rake-rubygem cmake boost-devel gcc-c++ mysql-devel zeromq-devel soci-mysql-devel</pre>
+                <p>(Git) check-out all the required components:</p>
+                <pre>rake checkout<br/>rake pull</pre>
+                <p>Test the components:</p>
+                <pre>rake offline=true check</pre>
+                <p>Install the components:</p>
+                <pre>rake offline=true install<br/>ls -lhF workspace/install</pre>
+                <p>Generate the tar-balls:</p>
+                <pre>rake offline=true dist<br/>ls -lhF /tmp/metasim</pre>
                 <p>Run the local binary version to perform your first simulation:</p>
-                <pre>./workspace/build/tvlsim/tvlsim/simulate</pre>
+                <pre>cd workspace/build/tvlsim<br/>./tvlsim/simulate</pre>
+                Have a look at the simulation logs:
+                <pre>less simulate.log</pre>
                 If encounter any problem while opening a database connection, run the following batch scripts (before launching again the simulate script):
-                <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
-                Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.</div>
-            <h3 style="color:#FFF;">Module by Module Installation</h3>
-            <div style="padding-left:5px; padding-right:5px">
+                <pre>cd ../stdair<br/>./db/admin/create_tvlsim_db.sh<br/>./db/admin/create_airinv_db.sh</pre>
+                <p>Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.</p><br/> 
+				<h5 id="MODULE">Module by module installation</h5>
                 StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it.
                 <ul class="disc">
                 	<li><a href="#STDAIR">StdAir Installation</a><br/></li>
@@ -274,10 +305,10 @@ components:
                 Have the latest StdAir release 'tagged' as the stable one:
                 <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
                 <strong><h6 id="OTHER">Other module installation</h6></strong>
-                <p>In order to install another specific module, you need to check its dependencies in the <a href="../user_manual/user_manual.html">dependency diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
                 Clone locally the full git project: 
                 <pre>cd ~/dev<br/>git clone git@github.com:airsim/trademgen.git trademgengit<br/>cd trademgengit<br/>git checkout trunk<br/>mkdir -p build && cd build</pre>
-                <p>As illustrated in the <a href="../user_manual/user_manual.html">dependency diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
+                <p>As illustrated in the <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DWITH_SEVMGR_PREFIX=/home/[user]/dev/deliveries/sevmgr-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
                 Of course, you are supposed to have previously cloned, built and installed the SEvMgr library following exactly the same process as for StdAir. Do not forget that SEvMgr depends on StdAir as well!
                 <p>Build, install the demand generation library and perform tests:</p>
@@ -286,7 +317,10 @@ components:
                 <pre>./trademgen/trademgen_generateDemand -b</pre>
                 If encounter any problem while opening a database connection, run the following batch scripts (before launching again the generateDemand script):
                 <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
-                Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.
+                Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.</div>
+			<h3 style="color:#FFF;">Subversion</h3>
+            <div style="padding-left:5px; padding-right:5px">
+			<h4>Subversion project</h4>
               </div>
             </div>
           </div>
@@ -300,4 +334,21 @@ components:
   <footer>&copy; 2012 Travel Simulator</footer>
 </div>
 </body>
+<script>
+	function showDependencies(pageUrl,divId)
+	{
+		var current_dialog = jquery('<div>').dialog({
+			width: 1080,
+			height: 470,			
+			resizable: false,
+			modal: true,
+			open: function ()
+            {
+                jquery(this).load(pageUrl);
+            }
+		});	
+		jquery(current_dialog).dialog('option', 'position', 'center');
+	}
+	
+</script>
 </html>
