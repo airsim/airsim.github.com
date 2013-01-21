@@ -23,10 +23,13 @@ pre{
 	color:#000;
 	border-style:dashed;
 	border-width:thin;
+	border-radius:5px;
+	border-color:#06F;
 	line-height:1.5em;
 	margin-bottom:1.833em;
 	padding:.667em .917em;
-	background-color:#F7F7F7;
+	/*background-color:#F7F7F7; #C5DFFA #DDECFB*/
+	background-color:#EEF7FD;
 }
 
 article, aside, details, figcaption, figure, 
