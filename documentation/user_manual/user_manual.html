@@ -23,6 +23,7 @@ jquery(function() {
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/home-button.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/d3.v2.js"></script>
+<script type="text/javascript" src="../../common/jsbean.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/jquery-ui-1.9.1.custom.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-right.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-stripe-off.css" />
@@ -155,10 +156,10 @@ jquery(function() {
           <br/>
           <p>Welcome to the documentation section. You should  find all the information you need about the Travel Simulator in these pages. To setup and get started with theTravel Simulator or one of the modules have a look at the <a href="../getting_started/getting_started.html" rel="self" title="Getting Started">getting started</a> page. For step by step instructions and exemples on how to use all the modules the <a href="../tutorials/tutorials.html">tutorials</a> page is what you are looking for.<br /><br />
             For a quick and high level description of Travel Simulator and all the modules, you are in the right place. 
-            A list of the Travel Simulator's modules and a brief description of them is available in the <a href="javascript:accordionShowGeneralSection(0)">repositories list</a>. <br/><br/>
-            The <a href="javascript:accordionShowGeneralSection(1)">dependencies diagram</a> does the tought job of showing you whom needs what.
+            A list of the Travel Simulator's modules and a brief description of them is available in the <a href="javascript:accordionShowSection(0)">repositories list</a>. <br/><br/>
+            The <a href="javascript:accordionShowSection(1)">dependencies diagram</a> does the tought job of showing you whom needs what.
             <br /><br />
-            Last but not least come the <a href="javascript:accordionShowGeneralSection(2)">simulation input files</a> that are mandatory for some of the Travel Simulator modules.  <br /> <br />
+            Last but not least come the <a href="javascript:accordionShowSection(2)">simulation input files</a> that are mandatory for some of the Travel Simulator modules.  <br /> <br />
             Still have a question? The <a href="../faq/faq.html" rel="self" title="FAQ">F.A.Q.</a> is here. </p>
 </div>
       </div>
@@ -224,7 +225,7 @@ jquery(function() {
           <h3 style="color:#FFF;">Dependencies diagram</h3>
           <div id="dtreesvg" style="padding-left:0px; padding-right:0px">
           	&nbsp;&nbsp;Click on diagram to zoom.<br/><br/>
-            <div align="center"><img src="files/tvlsim_dependencies_600.png" width="600" height="204" alt="dependencies" onClick="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')"></div>
+            <div align="center"><img src="files/tvlsim_dependencies_600.png" width="600" height="204" alt="dependencies" onClick="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)"></div>
           </div>
           <h3 style="color:#FFF;">Simulation input files</h3>
           <div> Here is a short description of each input file you may have to create when dealing with one or more Travel Simulator modules.
@@ -377,37 +378,9 @@ jquery(function() {
   </ul>
 </div>
 
+<div id="DEPENDENCIES_POPUP" style="display:none;">
+	<iframe  src="../../common/popup_dependencies.html" width="98%" height="98%" marginWidth="18" marginHeight="17" scrolling="no"></iframe>
+</div>
+
 </body>
-<script>
-
-	function showDependencies(pageUrl,divId)
-	{
-		var current_dialog = jquery('<div>').dialog({
-			width: 1080,
-			height: 470,			
-			resizable: false,
-			modal: true,
-			open: function ()
-            {
-                jquery(this).load(pageUrl);
-            }
-		});	
-		jquery(current_dialog).dialog('option', 'position', 'center');
-	}
-	
-	function showPopup(divId)
-	{
-		jquery( divId ).dialog({
-			width: 'auto',
-			modal: true,
-			show: "blind"
-		});
-	}
-		
-	function accordionShowGeneralSection(section)
-	{
-		jquery( "#accordion" ).accordion("option", "active", section );
-	}
-
-</script>
 </html>

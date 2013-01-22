@@ -23,6 +23,7 @@ jquery(function() {
 </script>
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/home-button.js"></script>
+<script type="text/javascript" src="../../common/jsbean.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/jquery-ui-1.9.1.custom.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-right.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-stripe-off.css" />
@@ -184,7 +185,7 @@ jquery(function() {
             	</div>
             	<h3 style="color:#FFF;">Common commands for basic batches</h3>
             	<div>
-            	From here, we choose to work in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowGeneralSection()">General knowledge part</a> if you are not sure where to find the binaries.
+            	From here, we choose to work in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> if you are not sure where to find the binaries.
             	<ul class="disc">
             		<li>Display the help:<br/><pre>./simulate --help</pre></li>
             		<li>Run the scenario corresponding to a default built-in BOM tree:<br/><pre>./simulate --builtin</pre></li>
@@ -193,7 +194,7 @@ jquery(function() {
             		</div>
             	<h3 style="color:#FFF;">Common commands for interactive batches</h3>
             	<div>
-            	In this part, we are working in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowGeneralSection()">General knowledge part</a> part if you are not sure where to find the binaries.</br></br>
+            	In this part, we are working in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> part if you are not sure where to find the binaries.</br></br>
             	The interactive scripts can be launched exactly as the non-interactive ones:
             	<pre>./tvlsim</pre>
             	At this step, you should see something similar to the following screen shot:<br/>
@@ -206,7 +207,7 @@ jquery(function() {
             	<h3 style="color:#FFF;">Focus on each module</h3>
             	<div> Here is a short tutorial list to help you start with each Travel Simulator module.
             	<ul class="disc">
-            	<li><a href="javascript:showPopup('#SIMFQT_POPUP')">SimFQT</a></li>
+            	<li><a href="javascript:showPopup('#SIMFQT_POPUP','Simulator Fare Quote')">SimFQT</a></li>
             	<li><a href="javascript:showPopup('#POPUP')">...</a></li>
             </ul>
           </div>
@@ -221,21 +222,7 @@ jquery(function() {
   </div>
   <footer>&copy; 2012 Travel Simulator</footer>
 </div>
-<div id="SIMFQT_POPUP" title="Simulator Fare Quote" style="display:none">
+<div id="SIMFQT_POPUP" style="display:none">
 </div>
 </body>
-<script>	
-	function showPopup(divId)
-	{
-		jquery( divId ).dialog({
-			width: 970,
-			modal: true,
-			show: "blind"
-		});
-	}
-	function accordionShowGeneralSection()
-		{
-			jquery( "#accordion" ).accordion("option", "active", 0 );
-		}
-</script>
 </html>

@@ -1,30 +1,24 @@
-//Dependencies Popup
-function showDependencies(pageUrl,divId)
+function showPopup(divId, dialogTitle, widthpx, heightpx)
 {
-	var current_dialog = jquery('<div>').dialog({
-		width: 1080,
-		height: 470,			
-		resizable: false,
+	if (widthpx == null)
+	{
+		widthpx = 'auto';
+	}
+	if (heightpx == null)
+	{
+		heightpx = 'auto';
+	}
+	
+	var currentDialog = jquery( divId ).dialog({
+		height: heightpx,
+		width: widthpx,
+		title: dialogTitle,
 		modal: true,
-		open: function ()
-		{
-			jquery(this).load(pageUrl);
-		}
-	});	
-	jquery(current_dialog).dialog('option', 'position', 'center');
+		show: "blind",
+	});
 }
 
-/*
-function showPopup(divId)
-{
-	jquery( divId ).dialog({
-		width: 'auto',
-		modal: true,
-		show: "blind"
-	});
-}*/
-
-function accordionShowGeneralSection(section)
+function accordionShowSection(section)
 {
 	jquery( "#accordion" ).accordion("option", "active", section );
 }

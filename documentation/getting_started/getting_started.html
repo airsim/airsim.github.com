@@ -23,6 +23,7 @@ jquery(function() {
 </script>
 <script type="text/javascript" src="../../common/style/assets/js/elixir.js"></script>
 <script type="text/javascript" src="../../common/style/assets/js/home-button.js"></script>
+<script type="text/javascript" src="../../common/jsbean.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/jquery-ui-1.9.1.custom.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-right.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/css/sidebar/sidebar-stripe-off.css" />
@@ -249,7 +250,7 @@ components:
     repo: 'https://github.com/airsim/stdair.git'
     deps: {}
                 </pre>
-                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies</a> first!</p>
+                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies</a> first!</p>
                 <p>For instance, if you are working on Travel-CCM only, you can keep only 'travelccm' and 'stdair'. In this case the metasim file should look like:</p>
                 <pre>
 # MetaSim configuration file
@@ -305,10 +306,10 @@ components:
                 Have the latest StdAir release 'tagged' as the stable one:
                 <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
                 <strong><h6 id="OTHER">Other module installation</h6></strong>
-                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
                 Clone locally the full git project: 
                 <pre>cd ~/dev<br/>git clone git@github.com:airsim/trademgen.git trademgengit<br/>cd trademgengit<br/>git checkout trunk<br/>mkdir -p build && cd build</pre>
-                <p>As illustrated in the <a href="javascript:showDependencies('../../common/popup_dependencies.html','#DEPENDENCIES_POPUP')">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
+                <p>As illustrated in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DWITH_SEVMGR_PREFIX=/home/[user]/dev/deliveries/sevmgr-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
                 Of course, you are supposed to have previously cloned, built and installed the SEvMgr library following exactly the same process as for StdAir. Do not forget that SEvMgr depends on StdAir as well!
                 <p>Build, install the demand generation library and perform tests:</p>
@@ -333,22 +334,8 @@ components:
   </div>
   <footer>&copy; 2012 Travel Simulator</footer>
 </div>
+<div id="DEPENDENCIES_POPUP" style="display:none;">
+	<iframe  src="../../common/popup_dependencies.html" width="98%" height="98%" marginWidth="18" marginHeight="17" scrolling="no"></iframe>
+</div>
 </body>
-<script>
-	function showDependencies(pageUrl,divId)
-	{
-		var current_dialog = jquery('<div>').dialog({
-			width: 1080,
-			height: 470,			
-			resizable: false,
-			modal: true,
-			open: function ()
-            {
-                jquery(this).load(pageUrl);
-            }
-		});	
-		jquery(current_dialog).dialog('option', 'position', 'center');
-	}
-	
-</script>
 </html>
