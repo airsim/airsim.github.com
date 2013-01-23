@@ -1,3 +1,19 @@
+jquery(document).ready(function() 
+{
+	var url = window.location;
+	var mySplitResult = url.toString().split("?");
+	var secondValue = mySplitResult[1];
+	if (secondValue === "accordion") 
+	{
+		var thirdValue = mySplitResult[2];
+		if (thirdValue != null) 
+		{
+			thirdValue = parseInt(thirdValue);
+			accordionShowSection(thirdValue);
+		}	
+	}
+});
+
 function showPopup(divId, dialogTitle, widthpx, heightpx)
 {
 	if (widthpx == null)

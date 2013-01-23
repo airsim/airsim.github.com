@@ -1,8 +1,6 @@
 <!doctype html><head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- 
-
 <title>Tutorials</title>
 <meta name="viewport" content="width=1300" />
 <link rel="stylesheet" type="text/css" media="screen" href="../../common/style/assets/styles.css"  />
@@ -204,13 +202,18 @@ jquery(function() {
             	To quit the interactive scenario:
             	<pre>quit</pre>
             	</div>
-            	<h3 style="color:#FFF;">Focus on each module</h3>
-            	<div> Here is a short tutorial list to help you start with each Travel Simulator module.
+            	<h3 style="color:#FFF;">StdAir</h3>
+            	<div>
+            	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="../user_manual/user_manual.html?accordion?2">simulation input files</a>.</br> 
+            	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br>
+            	There are many ways of giving your simulation inputs:<br/>
             	<ul class="disc">
-            	<li><a href="javascript:showPopup('#SIMFQT_POPUP','Simulator Fare Quote')">SimFQT</a></li>
-            	<li><a href="javascript:showPopup('#POPUP')">...</a></li>
-            </ul>
-          </div>
+                	<li><a href="javascript:showPopup('#DEFAULT_BOM','How to use the default BOM tree?')">using the default BOM tree.</a></li>
+	            	<li><a href="javascript:showPopup('#CREATING_BOM','How to create your own BOM tree?')">creating your own BOM tree.</a></li>
+	            	<li><a href="javascript:showPopup('#EXISTING_FILES','How to use existing input files?')">using existing input files.</a></li>
+                	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?')">creating your own input files.</a></li>
+            	</ul>
+				</div>
             </div>
 		  </div>	
         </div>
@@ -253,7 +256,13 @@ jquery(function() {
 
   </footer>
 </div>
-<div id="SIMFQT_POPUP" style="display:none">
+<div id="DEFAULT_BOM" style="display:none">
+</div>
+<div id="CREATING_BOM" style="display:none">
+</div>
+<div id="EXISTING_FILES" style="display:none">
+</div>
+<div id="CREATING_FILES" style="display:none">
 </div>
 </body>
 </html>
