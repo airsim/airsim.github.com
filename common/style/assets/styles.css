@@ -899,11 +899,63 @@ h3#sidebar-title {
 }
 
 footer {
-	margin-top: 8px;
 	text-align: right;
 	font-size: 12px;
-	margin-bottom: 130px;
+	/*margin-bottom: 130px;*/
 }
+
+
+/***************************************************
+			      NEW FOOTER
+***************************************************/
+
+.footerlinks, a:link, a:visited, a:active, a:hover{
+	text-decoration: none;
+}
+
+footer{
+	position: relative;
+	height: 190px;
+	clear: both;
+	width: 100%;
+	margin-bottom: 40px;
+	background-color: #2b2d33;
+	display: block;
+	width: 100%;
+}
+#FooterOne, #FooterTwo, #FooterTree {
+	position: absolute;
+}
+
+#FooterOne{
+	
+	position: absolute;
+	left: 340px;
+	
+}
+
+#FooterTwo {
+	position: absolute;
+	left: 350px;
+	bottom: 10px;
+	color: white;
+	clear:both;
+	font-size:11px;
+}
+#FooterThree {
+	position: absolute;
+	left: 225px;
+	top: 26px;
+	color: white;
+}
+.container {
+	width: 980px;
+	margin: 0 auto;
+	background-color: #33CC99;
+}
+
+
+
 
 .content-pop-shadow {
 	width: 100%;
