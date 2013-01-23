@@ -904,6 +904,16 @@ footer {
 	/*margin-bottom: 130px;*/
 }
 
+.screenshot {
+	color:#000;
+	border-style:dashed;
+	border-width:thin;
+	border-radius:5px;
+	border-color:#666;
+	line-height:1.5em;
+	padding:5px;
+}
+
 
 /***************************************************
 			      NEW FOOTER
