@@ -909,7 +909,8 @@ footer {
 			      NEW FOOTER
 ***************************************************/
 
-.footerlinks, a:link, a:visited, a:active, a:hover{
+.footerlinks a:link, .footerlinks a:visited, .footerlinks a:active{
+	color:#999; 
 	text-decoration: none;
 }
 
@@ -931,6 +932,7 @@ footer{
 	
 	position: absolute;
 	left: 340px;
+	color:#999;
 	
 }
 
