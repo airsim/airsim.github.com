@@ -257,12 +257,45 @@ jquery(function() {
   </footer>
 </div>
 <div id="DEFAULT_BOM" style="display:none">
+To familiarize yourself with the default BOM tree, load the StdAir batch directory (for instance, if you are working within the metasim environment):
+<pre>cd ~/metasimgit/workspace/build/stdair/stdair/</pre>
+Then launch it with the default BOM tree option '-b':
+<pre>./stdair -b</pre>
+If you have a look at the log file (called after the launched batch), you can find the following <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, in this exact order :
+<ul class="disc">
+    <li>a BOM tree root at the top of the tree</li>
+	<li>some inventory objects at level one</li>
+	<li>each inventory (characterised by an airline code) contains one or more flight dates (i.e. a flight number and an associated date)</li>
+	<li>each flight date is composed of leg date and segment date objects</li>
+	<li>each leg and segment contains associated cabins</li>
+	<li>each segment cabin is composed of at least one fare family, whcih is in turn composed of one or more booking classes</li>
+</ul>
+To discover the second part of the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, you can launch SimFQT for instance:
+<pre>cd ~/metasimgit/workspace/build/simfqt/simfqt/</br>./simfqt -b</pre>
+This batch is an interactive one, try 'help' to obtain all the existing commands, and then 'list' to discover all the O&Ds and departure dates for which some fare rules are applicable.</br>
+Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At the beginning of the file, we find the BOM root display:
+<ul class="disc">
+	<li>a BOM tree root at the top of the tree</li>
+	<li>at level one we find some airport pairs (representing the origin and the destination of existing travels)</li>
+	<li>at the lower level, we have date period, followed by point-of sale and channel options, followed by time period</li>
+	<li>then we find the fares applicable and the corresponding options (saturday night, change fees, refundable criterion)</li>
+    <li>finally, we have the airline codes and booking classes for which each fare rule is applicable</li>
+</ul>
 </div>
 <div id="CREATING_BOM" style="display:none">
+To guess how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
+<pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
+Let's create our own BOM tree now. First, we need a BOM root object:
+<pre>const BomRootKey myBomRootKey ("My first Bom Root");</br>BomRoot& myOwnBomRoot = FacBom&#60BomRoot>::instance().create();</pre>
+Then, we can create an inventory object:
+<pre>const AirlineCode_T myAirlineCodeBA ("BA");</br>const InventoryKey myInventoryKeyBA (myAirlineCodeBA);</br>BomRoot& myOwnBomRoot = FacBom&#60Inventory>::instance().create(myInventoryKeyBA);</pre>
 </div>
 <div id="EXISTING_FILES" style="display:none">
 </div>
 <div id="CREATING_FILES" style="display:none">
+</div>
+<div id="BOM_TREE" style="display:none;">
+	<iframe src="../../common/images/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>
 </div>
 </body>
 </html>
