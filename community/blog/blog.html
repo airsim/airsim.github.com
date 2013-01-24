@@ -136,6 +136,7 @@ var jquery = jQuery;
         <div id='stacks_out_121_page2' class='stacks_out'>
           <div id='stacks_in_121_page2' class='stacks_in'>
             <div id="blogposts">
+            
              </div>
           </div>
         </div>
@@ -189,10 +190,11 @@ var jquery = jQuery;
 						   function(data)
 						   {
 							   jquery.each(data.posts,function(i,item){
-								   jquery("<h3/>").attr("innerHTML", item.title).appendTo("#blogposts");
 								   var postdate = new Date(item.date).toLocaleDateString();
-								   jquery("<p/>").attr("innerHTML", postdate).appendTo("#blogposts");
+								   jquery("<blogdate/>").attr("innerHTML", postdate).appendTo("#blogposts");
+								   jquery("<blogtitle/>").attr("innerHTML", item.title).appendTo("#blogposts");
 								   jquery("<p/>").attr("innerHTML", item.content).appendTo("#blogposts");
+								   jquery("#blogposts").append("<hr>");
 								   //document.getElementById(posttitle).value = data.posts[0].title;
 							   });
 						   });

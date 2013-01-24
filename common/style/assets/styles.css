@@ -463,6 +463,22 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 }
 
+blogtitle {
+	font-size: 24px;
+	margin-bottom: 20px;
+	font:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-weight:400;
+	/*color:#5092bd;*/
+	margin-top:1em
+}
+
+blogdate {
+	float:right;
+	font-size:70%;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
 .image-left {
 	float: left;
 	margin: 12px 30px 12px 0;
