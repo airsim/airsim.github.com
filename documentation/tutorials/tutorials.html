@@ -202,7 +202,7 @@ jquery(function() {
             	To quit the interactive scenario:
             	<pre>quit</pre>
             	</div>
-            	<h3 style="color:#FFF;">StdAir</h3>
+            	<h3 style="color:#FFF;">Building correct simulation inputs</h3>
             	<div>
             	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="../user_manual/user_manual.html?accordion?2">simulation input files</a>.</br> 
             	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br>
@@ -283,7 +283,7 @@ Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At t
 </ul>
 </div>
 <div id="CREATING_BOM" style="display:none">
-To guess how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
+To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
 <pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
 Let's create our own BOM tree now. First, we need a BOM root object:
 <pre>const BomRootKey myBomRootKey ("My first Bom Root");</br>BomRoot& myOwnBomRoot = FacBom&#60BomRoot>::instance().create();</pre>
@@ -291,8 +291,36 @@ Then, we can create an inventory object:
 <pre>const AirlineCode_T myAirlineCodeBA ("BA");</br>const InventoryKey myInventoryKeyBA (myAirlineCodeBA);</br>BomRoot& myOwnBomRoot = FacBom&#60Inventory>::instance().create(myInventoryKeyBA);</pre>
 </div>
 <div id="EXISTING_FILES" style="display:none">
+When running a batch with no option specified, predefined default files are parsed and used to construct the BOM tree. 
 </div>
 <div id="CREATING_FILES" style="display:none">
+In this tutorial, we are going to create our own input files one by one.</br>
+Please first read the <a href="../user_manual/user_manual.html?accordion?2">simulation input files description</a> to familiarize yourself with each type of file.</br></br>
+<h3>How to create a schedule input file?</h3>
+<div>
+Let's say we want to simulate the Singapour airline flight number 11 from SIN to BKK every day of the 2011 year. Our first network rule looks like:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
+Let's add some details about departure time, arrival time and elapsed flight (in this exact order):
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; ... </pre>
+We know that the aircraft is composed of only one Economy cabin 'Y' with 300 seats available.
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; ... </pre>
+The economy cabin is itself composed of 2 booking classes 'Y' and 'M':
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; ... </pre>
+We have two fare families '1' and '2'. The first one contains the 'Y' booking class and the second one the 'M' booking class:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1; ... Y; 2; ... M;</pre>
+Because we take into account fare families here, we need to add a fare family disutility curve and a FRAT5 one for each fare family.
+Some instances are available in the frat5.csv and ffDisutility.csv files in the StdAir samples directory. We finally obtain our first network rule:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1;  F1; D1; Y; 2; F2; D2;</pre>
+</div>
+<h3>How to create a fare input file?</h3>
+<div>
+First of all, we need to know all the origin-destination couples for which we need a fare rule.
+If we refer to the schedule input build, we have:
+<ul class="disc">
+	<li>one flight from LHR to SYD</li>
+	<li>a second one from </li>
+</ul>
+</div>
 </div>
 <div id="BOM_TREE" style="display:none;">
 	<iframe src="../../common/images/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>
