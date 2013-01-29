@@ -285,7 +285,7 @@ Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At t
 <div id="CREATING_BOM" style="display:none">
 To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
 <pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
-Let's create our own BOM tree now. First, we need a BOM root object:
+Let us create our own BOM tree now. First, we need a BOM root object:
 <pre>const BomRootKey myBomRootKey ("My first Bom Root");</br>BomRoot& myOwnBomRoot = FacBom&#60BomRoot>::instance().create();</pre>
 Then, we can create an inventory object:
 <pre>const AirlineCode_T myAirlineCodeBA ("BA");</br>const InventoryKey myInventoryKeyBA (myAirlineCodeBA);</br>BomRoot& myOwnBomRoot = FacBom&#60Inventory>::instance().create(myInventoryKeyBA);</pre>
@@ -298,9 +298,9 @@ In this tutorial, we are going to create our own input files one by one.</br>
 Please first read the <a href="../user_manual/user_manual.html?accordion?2">simulation input files description</a> to familiarize yourself with each type of file.</br></br>
 <h3>How to create a schedule input file?</h3>
 <div>
-Let's say we want to simulate the Singapour airline flight number 11 from SIN to BKK every day of the 2011 year. Our first network rule looks like:
+Let us say we want to simulate the Singapour airline flight number 11 from SIN to BKK every day of the 2011 year. Our first network rule looks like:
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
-Let's add some details about departure time, arrival time and elapsed flight (in this exact order):
+Let us add some details about departure time, arrival time and elapsed flight (in this exact order):
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; ... </pre>
 We know that the aircraft is composed of only one Economy cabin 'Y' with 300 seats available.
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; ... </pre>
@@ -312,14 +312,59 @@ Because we take into account fare families here, we need to add a fare family di
 Some instances are available in the frat5.csv and ffDisutility.csv files in the StdAir samples directory. We finally obtain our first network rule:
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1;  F1; D1; Y; 2; F2; D2;</pre>
 </div>
+<h3>How to create a demand input file?</h3>
+<div>
+Now that we agreed on the flight to simulate, we need to generate the demand, that is to say the customers wishing to purchase seat(s) on the concerned flight.</br>
+This is the objective of the demand input file. This last one is organised around lines, each line representing a demand stream.
+Let us focus on the first demand stream:</br>
+we know we want to generate passengers wishing to travel from Singapour to Bangkok every day of the year 2011 (this matches exactly the Singapour flight numbered 11):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
+Those passengers are wishing to travel in the Economy cabin 'Y', let us arbitrary decide that 70% of those passengers are located in Singapour when willing to purchase a ticket,</br>20% of them are in Bangkok and the remaining 10% elsewhere ('row' stands for the rest of the world):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; ... </pre>
+Let us now arbitrarily define the channel distribution:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; ... </pre>
+The sum of the channel distribution is as expected equal to 1. Let us now define the trip type:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; ... </pre>
+For 60% of the passengers, the Singapour-Bangkok flight is the outbound flight of their trip, for 20% of them it is the inbound flight of their trip and for the last 10% it is just a one-way trip.
+</br>Then, we find the stay duration ditribution:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35;... </pre>
+35% of the passengers are staying at the destination location 5 days, 15% are only staying 4 days, ...</br>
+After that, we encounter the frequent flyer status (P=Platinum, G=Gold, S=Silver, M=Member, N=None) of the potential customers:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; ... </pre>
+Next, we find restriction information:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; ... </pre>
+50% of the passengers are accepting a restriction regarding the change fees whereas the other 50% are refusing such restriction (in the hard-restriction custumer choice model) or see this restriction</br>
+as a disutility value which is added to the actual fare (in the disutility customer choice model). Then we find the continuous cumulative distribution about preferred departure time:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; ... </pre>
+In a more explicit way, we are saying that no passenger is wishing to travel before 6 in the morning, 10% are wishing to travel before 7 am, 30% are wishing to leave before 9 am (so 20% are</br>wishing to take off between 7 and 9 am), ... Let us now add information about the willingness-to-pay of such passengers: such passengers are at least ready to pay 200 (arbitrary currency) for their travel.
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35 P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; ... </pre>
+Let us add the value of time in the customer point of view: what is the cost if he leaves one hour later than his preferred departure time:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; ... </pre>
+Let us now specify the arrival pattern of customers: 20% of them are making their request between one year and 40 days before departure, 60% of them have make their requests when we reach the date of 20 days before departure, ...:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; 330:0, 40:0.2, 20:0.6, 1:1; ... </pre>
+Finally, we give the distribution of the number of requests: let us take here a normal law with mean 100 and standard deviation 10 (specified as N, 100.0, 10.0):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; 330:0, 40:0.2, 20:0.6, 1:1; N, 100.0, 10.0;</pre>
+</div>
 <h3>How to create a fare input file?</h3>
 <div>
-First of all, we need to know all the origin-destination couples for which we need a fare rule.
-If we refer to the schedule input build, we have:
+If we refer to the schedule input build, we deduce we need one or more fare rules:
 <ul class="disc">
-	<li>one flight from LHR to SYD</li>
-	<li>a second one from </li>
+	<li>whose origin-destination couple is "SIN, BKK"</li>
+	<li>valid for every day in the 2011 year</li>
+	<li>valid for a flight departure time of 8:20 in the morning</li>
+	<li>valid for the operating airline "SQ", which is likely to be the pricing airline </li>
 </ul>
+We can deduce a part of our first fare rule:
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ???; ?; ??; ?; ?; ?; ?; ?; ????; SQ; ?; </pre>
+In this case, we are not filtering requests according to departure time.</br>
+In a second time, if we refer to the demand input file, we need to filter requests according to the stay duration and the advance purchase: for now, let us put "0" to embrace all the requests possible. We need as well to filter according to the point-of-sale and the channel: let us put "DC" to embrace all the different channels and "ALL" to embrace all the point-of-sales.
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; ?; DC; 0; ?; ?; ?; 0; ????; SQ; ?; </pre>
+Let us say we just have the Economy cabin "Y" and Singapour airlines prices ticket for class "Y" and for class "M":
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>2; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</pre>
+We need to duplicate the fare rule to take into account both trip types: one-way "OW" and round-trip "RT":
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</pre>
+The fare options are all set to a default value "T" (meaning true) for the "M" class, "F" (meaning false) for the "Y" class. The fare values (arbitrary currency) are chosen to be all distinct.
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 160; SQ; M;</pre>
 </div>
 </div>
 <div id="BOM_TREE" style="display:none;">
