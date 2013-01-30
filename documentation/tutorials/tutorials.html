@@ -366,6 +366,10 @@ We need to duplicate the fare rule to take into account both trip types: one-way
 The fare options are all set to a default value "T" (meaning true) for the "M" class, "F" (meaning false) for the "Y" class. The fare values (arbitrary currency) are chosen to be all distinct.
 <pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 160; SQ; M;</pre>
 </div>
+<h3>How to create a yield input file?</h3>
+<div>
+Once you have created your fare input file, building the yield one is very simple. Just copy your fare input file and remove everything related to restrictions, advance purchase and stay duration:
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 160; SQ; M;</pre>
 </div>
 <div id="BOM_TREE" style="display:none;">
 	<iframe src="../../common/images/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>
