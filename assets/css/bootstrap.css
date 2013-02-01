@@ -755,6 +755,7 @@ h2 {
 
 h3 {
   font-size: 24.5px;
+  color:#515151;
 }
 
 h4 {
@@ -5999,7 +6000,7 @@ a.badge:hover {
   color:white;
   border-radius: 15px;
   -moz-border-radius: 15px;
-  background: #142a23;
+  background: #ffffff;
   background-image: url("../img/bg1.png"), url("../img/bg2.png");
   background-repeat: repeat-x, repeat;
   
