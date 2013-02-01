@@ -186,10 +186,20 @@ Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At t
 <div id="CREATING_BOM" style="display:none">
 To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
 <pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
-Let us create our own BOM tree now. First, we need a BOM root object:
-<pre>const BomRootKey myBomRootKey ("My first Bom Root");</br>BomRoot& myOwnBomRoot = FacBom&#60BomRoot>::instance().create();</pre>
-Then, we can create an inventory object:
-<pre>const AirlineCode_T myAirlineCodeBA ("BA");</br>const InventoryKey myInventoryKeyBA (myAirlineCodeBA);</br>BomRoot& myOwnBomRoot = FacBom&#60Inventory>::instance().create(myInventoryKeyBA);</pre>
+Let us create our own BOM tree now.</br> 
+First, a BOM root object (i.e. a root for all the classes in the project) must be instantiated. This is done by the stdair::STDAIR_ServiceContext context object, when the stdair::STDAIR_Service is itself instantiated. The standard procedure is illustrated below:
+<pre>const BomRootKey lBomRootKey ("My first Bom Root");</br>BomRoot& lBomRoot = FacBom&#60BomRoot>::instance().create(lBomRootKey);</pre>
+An airline inventory object can then be instantiated.</br> 
+Let us create the "BA" airline code (corresponding to British Airways airline):
+<pre>const AirlineCode_T lAirlineCodeBA ("BA");</pre>
+That is, an object (let us name it lInventoryKeyBA) of type (class) stdair::InventoryKey has first to be instantiated.
+<pre>const InventoryKey lInventoryKeyBA (lAirlineCodeBA);</pre>
+Thanks to that key, an airline inventory object, i.e. of type (class) stdair::Inventory, can be instantiated. Let us name that airline inventory object lBAInv.
+<pre>Inventory& lBAInv = FacBom&#60Inventory>::instance().create(lInventoryKeyBA);</pre>
+Then, we must create the link parent/child to attach those two objects as defined in the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>. That operation is as simple as using the following methods:
+<pre>FacBomManager::addToListAndMap (lBomRoot, lBAInv);</br>FacBomManager::linkWithParent (lBomRoot, lBAInv);</pre>
+Another airline inventory object, corresponding to the AF (Air France) company, can be instantiated the same way:
+<pre>const AirlineCode_T lAirlineCodeAF ("AF");</br>const InventoryKey lAFKey (lAirlineCodeAF);</br>Inventory& lAFInv = FacBom<Inventory>::instance().create (lAFKey);</br>FacBomManager::addToListAndMap (lBomRoot, lAFInv);</br>FacBomManager::linkWithParent (lBomRoot, lAFInv);</pre>
 </div>
 <div id="EXISTING_FILES" style="display:none">
 When running a batch with no option specified, predefined default files are parsed and used to construct the BOM tree. 
