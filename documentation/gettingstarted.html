@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Getting Started - Travel Market Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../assets/css/jqueryui/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid"> 
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+          <a class="brand" href="../index.html"><img src="../assets/img/airsim_logo_32.png" width="32" height="32" alt="TvlSim_Logo" style="padding-right:10px;">Travel Market Simulator</a>
+          <div class="nav-collapse collapse">
+            <div class="navbar-text pull-right" style="padding-top:10px;"> <!-- Padding modified for custom social badges-->
+              <div id="social-badges"><a href="http://www.facebook.com/tvlsim" class="fb" onClick=""></a><a href="https://twitter.com/TravelSimulator" class="twitter" onClick=""></a><a href="http://fr.linkedin.com/in/airsim" class="linkedin" onClick=""></a></div>
+            </div>
+            <ul class="nav" style="padding-top:3px;"><!-- Padding modified to center-->
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../download.html">Download</a></li>
+              <li><a href="../onlinedemo.html">Online Demo</a></li>
+              <li><a href="../about.html">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Documentation</li>
+              <li class="active"><a href="">Getting Started</a></li>
+              <li><a href="tutorials.html">Tutorials</a></li>
+              <li><a href="usermanual.html">User Manual</a></li>              
+              <li><a href="faq.html">FAQ</a></li>
+              <li class="nav-header">Community</li>
+              <li><a href="../community/contribute.html">Contribute</a></li>
+              <li><a href="../community/forum.html">Forum</a></li>
+              <li><a href="../community/blog.html">Blog</a></li>
+              <li><a href="../community/team.html">Team</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        <div class="hero-page-unit">
+        	<h2>Getting Started</h2>
+        </div>
+          <div class="row-fluid">
+          <p> There are many ways to get started with Travel Simulator and this page is here to give you all the information you need to do so easily.<br />
+          <br />
+          Choosing which flavor is the right for you is pretty easy. If you are looking to use Travel Simulator as soon as possible in a preconfigured environment you can go to the <a href="../onlinedemo.html">online version</a> or download the <a href="../download.html">preconfigured virtual machine</a> and import it into Virtual Box. If your goal is to have the most amount of fun, start contributing or simply dig deep into Travel Simulator, you can get the source code on Github.<br />
+            <br />
+            Travel Simulator comes in different flavors :<br />
+            
+            <div id="accordion" style="padding:0px">
+              <h3>Online Demo</h3>
+              <div>This is the best way to have a glance at the simulator's capabilities diectly from you browser. Be aware however that you data will not be saved and that you will only see the tip of the iceberg.</div>
+              <h3>Pre-installed in a downloadable virtual machine</h3>
+              <div>You want a quick start to get Travel Simulator working localy, this is for you! <br/>
+                First download the latest version of VirtualBox <a href="https://www.virtualbox.org/">here</a>. <br/>
+                Then download the VirtualBox Appliance <a href="../download.html">here.</a> <br/>
+                <br/>
+                When you finished installing VirtualBox follow these steps:<br/>
+                - File<br/>
+                - Import Appliance<br/>
+                - Open Appliance...<br/>
+                <br/>
+                Select the .OVA file you just downloaded and import the machine.<br/>
+                Once Virtual Box finished the setup simply run it. </div>
+              <h3>Packaged</h3>
+              <div style="padding-left:5px; padding-right:5px">
+              <h4>Packaged Version</h4>
+              </div>
+              <h3>Github</h3>
+              <div>
+                <h4>Github project</h4>
+                <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../onlinedemo.html">online version</a> or download the <a href="../download.html">virtual box appliance</a> to get all you need in one big package. </p>
+                <p>First of all, you need to <a href="https://help.github.com/articles/set-up-git"> install and set up git</a> within your working environment.</p>
+                <p>If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide <a href="#MODULE">below</a>.</p>
+                <h5>Metasim installation</h5>
+                <p>Enter the chosen working directory, for instance:</p>
+                <pre>mkdir -p ~/dev/sim<br />cd ~/dev/sim</pre>
+                <p>Clone the metasim project from the github environment:</p>
+                <pre>git clone git@github.com:airsim/metasim.git metasimgit</pre>
+                <pre>cd metasimgit</pre>
+                <p>Copy and edit the metasim.yaml file with your own details (check you firewall settings if necessary):</p>
+                <pre>cp metasim.yaml.sample metasim.yaml</pre>
+                Adapt metasim.yaml to your environment. In particular, you may turn off the 64bit library option as well as the generation of the GCOV/LCOV tests and of the documentation:
+                <pre>cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'</pre>
+                The avlcal and simlfs are not currently used; so they can be dropped without any other consequence.
+                <p>After editing the metasim.yaml file, it should look like:</p>
+                <pre>
+# MetaSim configuration file
+default_base_repo: 'git@github.com:airsim'
+default_branch: trunk
+cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
+publish_path: /dev/sim/metasimgit
+components:
+  - name: tvlsim
+    repo: 'https://github.com/airsim/tvlsim.git'
+    deps: [stdair, airrac, rmol, airinv, simfqt, airsched, simcrs, trademgen, sevmgr, travelccm]  
+  - name: simcrs 
+    repo: 'https://github.com/airsim/simcrs.git'
+    deps: [stdair, airrac, rmol, sevmgr, airinv, simfqt, airsched] 
+  - name: simlfs
+    repo: 'https://github.com/airsim/simlfs.git'
+    deps: [stdair, airrac, rmol, sevmgr, airinv, simfqt]  
+  - name: avlcal 
+    repo: 'https://github.com/airsim/avlcal.git'
+    deps: [stdair, airrac, rmol, airinv]   
+  - name: airinv
+    repo: 'https://github.com/airsim/airinv.git'
+    deps: [stdair, airrac, rmol, sevmgr]  
+  - name: trademgen
+    repo: 'https://github.com/airsim/trademgen.git'
+    deps: [stdair, sevmgr]   
+  - name: rmol
+    repo: 'https://github.com/airsim/rmol.git'
+    deps: [stdair, airrac] 
+  - name: simfqt
+    repo: 'https://github.com/airsim/simfqt.git'
+    deps: [stdair]
+  - name: airsched
+    repo: 'https://github.com/airsim/airsched.git'
+    deps: [stdair]
+  - name: travelccm
+    repo: 'https://github.com/airsim/travelccm.git'
+    deps: [stdair] 
+  - name: sevmgr
+    repo: 'https://github.com/airsim/sevmgr.git'
+    deps: [stdair] 
+  - name: airrac
+    repo: 'https://github.com/airsim/airrac.git'
+    deps: [stdair]
+  - name: stdair 
+    repo: 'https://github.com/airsim/stdair.git'
+    deps: {}
+                </pre>
+                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies</a> first!</p>
+                <p>For instance, if you are working on Travel-CCM only, you can keep only 'travelccm' and 'stdair'. In this case the metasim file should look like:</p>
+                <pre>
+# MetaSim configuration file
+default_base_repo: 'git@github.com:airsim'
+default_branch: trunk
+cmake_args: '-DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=OFF \ <br> -DENABLE_TEST:BOOL=ON -DRUN_GCOV:BOOL=OFF'
+publish_path: /dev/sim/metasimgit
+components:
+  - name: travelccm
+    repo: 'https://github.com/airsim/travelccm.git'
+    deps: [stdair] 
+  - name: stdair 
+    repo: 'https://github.com/airsim/stdair.git'
+    deps: {}
+                </pre>
+                <p>Then, you will need a minimum of development tools, including Ruby-gem based Rake, CMake, g++, Boost:</p>
+                <pre>sudo yum -y install rake-rubygem cmake boost-devel gcc-c++ mysql-devel zeromq-devel soci-mysql-devel</pre>
+                <p>(Git) check-out all the required components:</p>
+                <pre>rake checkout<br/>rake pull</pre>
+                <p>Test the components:</p>
+                <pre>rake offline=true check</pre>
+                <p>Install the components:</p>
+                <pre>rake offline=true install<br/>ls -lhF workspace/install</pre>
+                <p>Generate the tar-balls:</p>
+                <pre>rake offline=true dist<br/>ls -lhF /tmp/metasim</pre>
+                <p>Run the local binary version to perform your first simulation:</p>
+                <pre>cd workspace/build/tvlsim<br/>./tvlsim/simulate</pre>
+                Have a look at the simulation logs:
+                <pre>less simulate.log</pre>
+                If encounter any problem while opening a database connection, run the following batch scripts (before launching again the simulate script):
+                <pre>cd ../stdair<br/>./db/admin/create_tvlsim_db.sh<br/>./db/admin/create_airinv_db.sh</pre>
+                <p>Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them.</p><br/> 
+				<h5 id="MODULE">Module by module installation</h5>
+                StdAir, C++ Standard Airline IT library, is the first module you need whatever your objectives are. Indeed, all other simulation modules depend on it.
+                <ul class="disc">
+                	<li><a href="#STDAIR">StdAir Installation</a><br/></li>
+                	<li><a href="#OTHER">Other Module Installation</a><br/></li>
+                </ul>
+                <strong><h6 id="STDAIR">StdAir Installation</h6></strong>
+                <p>Follow the steps below to download, build and install StdAir.
+                <strong>Get the StdAir library</strong><br/>
+                Clone locally the full git project: 
+                <pre>cd ~ <br/>mkdir dev<br/>cd ~/dev/<br/>git clone git@github.com:airsim/stdair.git stdairgit<br/>cd stdairgit<br/>git checkout trunk</pre>
+                <strong>Build the StdAir project</strong><br/>
+                Configure, compile and install using the following commands: 
+                <pre>cd ~/dev/stdairgit<br/>rm -rf build && mkdir -p build<br/>cd build <br/>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/stdair-99.99.99 \<br/> -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..<br/>make install</pre>
+                <strong>Run the Tests</strong><br/>
+                After building the StdAir project, the following commands run the tests: 
+                <pre>cd ~/dev/stdairgit <br/>cd build<br/>make check</pre>
+                As a result, you should obtain a similar report: <br/><br/>
+                <img src="../assets/img/ss_stdair_successful_test.jpg" width="594" height="195" alt="sc_test"><br/><br/>
+                <strong>Update the StdAir deliveries</strong><br/>
+                Have the latest StdAir release 'tagged' as the stable one:
+                <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
+                <strong><h6 id="OTHER">Other module installation</h6></strong>
+                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+                Clone locally the full git project: 
+                <pre>cd ~/dev<br/>git clone git@github.com:airsim/trademgen.git trademgengit<br/>cd trademgengit<br/>git checkout trunk<br/>mkdir -p build && cd build</pre>
+                <p>As illustrated in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
+                <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DWITH_SEVMGR_PREFIX=/home/[user]/dev/deliveries/sevmgr-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
+                Of course, you are supposed to have previously cloned, built and installed the SEvMgr library following exactly the same process as for StdAir. Do not forget that SEvMgr depends on StdAir as well!
+                <p>Build, install the demand generation library and perform tests:</p>
+                <pre>make & make install && make check</pre>
+                <p>Run the local binary version to generate your first booking requests:</p>
+                <pre>./trademgen/trademgen_generateDemand -b</pre>
+                If encounter any problem while opening a database connection, run the following batch scripts (before launching again the generateDemand script):
+                <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
+                Please go to the <a href="../tutorials/tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them. </p></div>
+			<h3>Subversion</h3>
+            <div style="padding-left:5px; padding-right:5px">
+			<h4>Subversion project</h4>
+              </div>
+            </div>
+            
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Travel Market Simulator 2013</p>
+        <p class="legalfont">The Travel Market Simulator and this website are licensed under Apache 2.0 license<p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery-1.9.0.js" type="text/javascript"></script> 
+    <script src="../assets/js/jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+   
+    <script>
+	$(function() {
+        $( "#accordion" ).accordion({
+            collapsible: true,
+			active: false,
+			heightStyle:"content",
+			header: "h3"
+		});
+    });
+	</script>
+
+  </body>
+</html>

@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tutorials - Travel Market Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../assets/css/jqueryui/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid"> 
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+          <a class="brand" href="../index.html"><img src="../assets/img/airsim_logo_32.png" width="32" height="32" alt="TvlSim_Logo" style="padding-right:10px;">Travel Market Simulator</a>
+          <div class="nav-collapse collapse">
+            <div class="navbar-text pull-right" style="padding-top:10px;"> <!-- Padding modified for custom social badges-->
+              <div id="social-badges"><a href="http://www.facebook.com/tvlsim" class="fb" onClick=""></a><a href="https://twitter.com/TravelSimulator" class="twitter" onClick=""></a><a href="http://fr.linkedin.com/in/airsim" class="linkedin" onClick=""></a></div>
+            </div>
+            <ul class="nav" style="padding-top:3px;"><!-- Padding modified to center-->
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../download.html">Download</a></li>
+              <li><a href="../onlinedemo.html">Online Demo</a></li>
+              <li><a href="../about.html">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Documentation</li>
+              <li><a href="gettingstarted.html">Getting Started</a></li>
+              <li class="active"><a href="">Tutorials</a></li>
+              <li><a href="usermanual.html">User Manual</a></li>              
+              <li><a href="faq.html">FAQ</a></li>
+              <li class="nav-header">Community</li>
+              <li><a href="../community/contribute.html">Contribute</a></li>
+              <li><a href="../community/forum.html">Forum</a></li>
+              <li><a href="../community/blog.html">Blog</a></li>
+              <li><a href="../community/team.html">Team</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        <div class="hero-page-unit">
+        	<h2>Tutorials</h2>
+        </div>
+          <div class="row-fluid">
+          
+          <p>This tutorial section will give you step by step instructions and exemples on how to use all the modules. <br/><br/>
+                
+             	The first mandatory tutorial is the <a href="gettingstarted.html">getting started</a> procedure you should have already followed at this step. Once the needed Travel Simulator packages are correctly installed, the following tutorials are what you need!<br/><br />
+                
+                For general information and a technical description of the different modules head to the <a href="usermanual.html">user manual</a> page once you are finished here. <br/><br/>
+                Also for focused information on precise problems make sure you have a look at the <a href="faq.html">F.A.Q.</a></p><br/>       
+          
+          <div id="accordion" style="padding:0px">
+            	<h3>General knowledge</h3>
+            	<div>
+            	Whatever the flavour chosen, those tutorials will help. The only difference is the way to launch binaries. Let's take for instance the whole simulator component named <strong>TvlSim</strong>.</br></br>
+            	If you are working within the <strong>pre-configured Virtual Box</strong>, the command is independent from the current directory as the simulator libraries have been installed within the Fedora package:
+            	<pre>tvlsim</pre>
+            	If you chose to work within the <strong>packaged metasim component</strong> (where all simulation modules are available), the correct way to launch the binary is:
+            	<pre>cd ~/dev/metasimgit/workspace/build/tvlsim/tvlsim</br>./tvlsim</pre>
+            	Finally, when dealing with all the <strong>modules independently</strong>, you can choose:
+            	<ul class="disc">
+                	<li>to run the local binary version:<br/></li><pre>cd ~/dev/tvlsimgit/tvlsim<br/>./simulate</pre>
+            		<li>or to run the installed version:<br/></li><pre>cd ~/dev/deliverie/tvlsim-99.99.99/bin/<br/>./simulate</pre>
+            	</ul>
+            	After running the script, you can check that a log file, named after the script, has been created in the current directory and have a look at it:
+            	<pre>ls</br>emacs simulate.log</pre>
+            	</div>
+            	<h3>Common commands for basic batches</h3>
+            	<div>
+            	From here, we choose to work in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> if you are not sure where to find the binaries.
+            	<ul class="disc">
+            		<li>Display the help:<br/><pre>./simulate --help</pre></li>
+            		<li>Run the scenario corresponding to a default built-in BOM tree:<br/><pre>./simulate --builtin</pre></li>
+            		<li>Run the scenario corresponding to default input files:<br/><pre>./simulate</pre></li>
+            	</ul><br/>
+            		</div>
+            	<h3>Common commands for interactive batches</h3>
+            	<div>
+            	In this part, we are working in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> part if you are not sure where to find the binaries.</br></br>
+            	The interactive scripts can be launched exactly as the non-interactive ones:
+            	<pre>./tvlsim</pre>
+            	At this step, you should see something similar to the following screen shot:<br/>
+            	<img src="../assets/img/ss_tvlsim_interactive.jpg" width="457" height="96" alt="test_result"><br/>
+            	To display the help of the interactive scenario:<br/>
+            	<pre>help</pre>
+            	To quit the interactive scenario:
+            	<pre>quit</pre>
+            	</div>
+            	<h3>Building correct simulation inputs</h3>
+            	<div>
+            	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="../user_manual/user_manual.html?accordion?2">simulation input files</a>.</br> 
+            	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br>
+            	There are many ways of giving your simulation inputs:<br/>
+            	<ul class="disc">
+                	<li><a href="javascript:showPopup('#DEFAULT_BOM','How to use the default BOM tree?')">using the default BOM tree.</a></li>
+	            	<li><a href="javascript:showPopup('#CREATING_BOM','How to create your own BOM tree?')">creating your own BOM tree.</a></li>
+	            	<li><a href="javascript:showPopup('#EXISTING_FILES','How to use existing input files?')">using existing input files.</a></li>
+                	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?')">creating your own input files.</a></li>
+            	</ul>
+				</div>
+            </div>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Travel Market Simulator 2013</p>
+        <p class="legalfont">The Travel Market Simulator and this website are licensed under Apache 2.0 license<p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    
+    <div id="DEFAULT_BOM" style="display:none">
+To familiarize yourself with the default BOM tree, load the StdAir batch directory (for instance, if you are working within the metasim environment):
+<pre>cd ~/metasimgit/workspace/build/stdair/stdair/</pre>
+Then launch it with the default BOM tree option '-b':
+<pre>./stdair -b</pre>
+If you have a look at the log file (called after the launched batch), you can find the following <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, in this exact order :
+<ul class="disc">
+    <li>a BOM tree root at the top of the tree</li>
+	<li>some inventory objects at level one</li>
+	<li>each inventory (characterised by an airline code) contains one or more flight dates (i.e. a flight number and an associated date)</li>
+	<li>each flight date is composed of leg date and segment date objects</li>
+	<li>each leg and segment contains associated cabins</li>
+	<li>each segment cabin is composed of at least one fare family, whcih is in turn composed of one or more booking classes</li>
+</ul>
+To discover the second part of the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, you can launch SimFQT for instance:
+<pre>cd ~/metasimgit/workspace/build/simfqt/simfqt/</br>./simfqt -b</pre>
+This batch is an interactive one, try 'help' to obtain all the existing commands, and then 'list' to discover all the O&Ds and departure dates for which some fare rules are applicable.</br>
+Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At the beginning of the file, we find the BOM root display:
+<ul class="disc">
+	<li>a BOM tree root at the top of the tree</li>
+	<li>at level one we find some airport pairs (representing the origin and the destination of existing travels)</li>
+	<li>at the lower level, we have date period, followed by point-of sale and channel options, followed by time period</li>
+	<li>then we find the fares applicable and the corresponding options (saturday night, change fees, refundable criterion)</li>
+    <li>finally, we have the airline codes and booking classes for which each fare rule is applicable</li>
+</ul>
+</div>
+<div id="CREATING_BOM" style="display:none">
+To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
+<pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
+Let us create our own BOM tree now. First, we need a BOM root object:
+<pre>const BomRootKey myBomRootKey ("My first Bom Root");</br>BomRoot& myOwnBomRoot = FacBom&#60BomRoot>::instance().create();</pre>
+Then, we can create an inventory object:
+<pre>const AirlineCode_T myAirlineCodeBA ("BA");</br>const InventoryKey myInventoryKeyBA (myAirlineCodeBA);</br>BomRoot& myOwnBomRoot = FacBom&#60Inventory>::instance().create(myInventoryKeyBA);</pre>
+</div>
+<div id="EXISTING_FILES" style="display:none">
+When running a batch with no option specified, predefined default files are parsed and used to construct the BOM tree. 
+</div>
+<div id="CREATING_FILES" style="display:none">
+In this tutorial, we are going to create our own input files one by one.</br>
+Please first read the <a href="../user_manual/user_manual.html?accordion?2">simulation input files description</a> to familiarize yourself with each type of file.</br></br>
+<h3>How to create a schedule input file?</h3>
+<div>
+Let us say we want to simulate the Singapour airline flight number 11 from SIN to BKK every day of the 2011 year. Our first network rule looks like:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
+Let us add some details about departure time, arrival time and elapsed flight (in this exact order):
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; ... </pre>
+We know that the aircraft is composed of only one Economy cabin 'Y' with 300 seats available.
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; ... </pre>
+The economy cabin is itself composed of 2 booking classes 'Y' and 'M':
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; ... </pre>
+We have two fare families '1' and '2'. The first one contains the 'Y' booking class and the second one the 'M' booking class:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1; ... Y; 2; ... M;</pre>
+Because we take into account fare families here, we need to add a fare family disutility curve and a FRAT5 one for each fare family.
+Some instances are available in the frat5.csv and ffDisutility.csv files in the StdAir samples directory. We finally obtain our first network rule:
+<pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1;  F1; D1; Y; 2; F2; D2;</pre>
+</div>
+<h3>How to create a demand input file?</h3>
+<div>
+Now that we agreed on the flight to simulate, we need to generate the demand, that is to say the customers wishing to purchase seat(s) on the concerned flight.</br>
+This is the objective of the demand input file. This last one is organised around lines, each line representing a demand stream.
+Let us focus on the first demand stream:</br>
+we know we want to generate passengers wishing to travel from Singapour to Bangkok every day of the year 2011 (this matches exactly the Singapour flight numbered 11):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
+Those passengers are wishing to travel in the Economy cabin 'Y', let us arbitrary decide that 70% of those passengers are located in Singapour when willing to purchase a ticket,</br>20% of them are in Bangkok and the remaining 10% elsewhere ('row' stands for the rest of the world):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; ... </pre>
+Let us now arbitrarily define the channel distribution:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; ... </pre>
+The sum of the channel distribution is as expected equal to 1. Let us now define the trip type:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; ... </pre>
+For 60% of the passengers, the Singapour-Bangkok flight is the outbound flight of their trip, for 20% of them it is the inbound flight of their trip and for the last 10% it is just a one-way trip.
+</br>Then, we find the stay duration ditribution:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35;... </pre>
+35% of the passengers are staying at the destination location 5 days, 15% are only staying 4 days, ...</br>
+After that, we encounter the frequent flyer status (P=Platinum, G=Gold, S=Silver, M=Member, N=None) of the potential customers:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; ... </pre>
+Next, we find restriction information:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; ... </pre>
+50% of the passengers are accepting a restriction regarding the change fees whereas the other 50% are refusing such restriction (in the hard-restriction custumer choice model) or see this restriction</br>
+as a disutility value which is added to the actual fare (in the disutility customer choice model). Then we find the continuous cumulative distribution about preferred departure time:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; ... </pre>
+In a more explicit way, we are saying that no passenger is wishing to travel before 6 in the morning, 10% are wishing to travel before 7 am, 30% are wishing to leave before 9 am (so 20% are</br>wishing to take off between 7 and 9 am), ... Let us now add information about the willingness-to-pay of such passengers: such passengers are at least ready to pay 200 (arbitrary currency) for their travel.
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35 P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; ... </pre>
+Let us add the value of time in the customer point of view: what is the cost if he leaves one hour later than his preferred departure time:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; ... </pre>
+Let us now specify the arrival pattern of customers: 20% of them are making their request between one year and 40 days before departure, 60% of them have make their requests when we reach the date of 20 days before departure, ...:
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; 330:0, 40:0.2, 20:0.6, 1:1; ... </pre>
+Finally, we give the distribution of the number of requests: let us take here a normal law with mean 100 and standard deviation 10 (specified as N, 100.0, 10.0):
+<pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; 330:0, 40:0.2, 20:0.6, 1:1; N, 100.0, 10.0;</pre>
+</div>
+<h3>How to create a fare input file?</h3>
+<div>
+If we refer to the schedule input build, we deduce we need one or more fare rules:
+<ul class="disc">
+	<li>whose origin-destination couple is "SIN, BKK"</li>
+	<li>valid for every day in the 2011 year</li>
+	<li>valid for a flight departure time of 8:20 in the morning</li>
+	<li>valid for the operating airline "SQ", which is likely to be the pricing airline </li>
+</ul>
+We can deduce a part of our first fare rule:
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ???; ?; ??; ?; ?; ?; ?; ?; ????; SQ; ?; </pre>
+In this case, we are not filtering requests according to departure time.</br>
+In a second time, if we refer to the demand input file, we need to filter requests according to the stay duration and the advance purchase: for now, let us put "0" to embrace all the requests possible. We need as well to filter according to the point-of-sale and the channel: let us put "DC" to embrace all the different channels and "ALL" to embrace all the point-of-sales.
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; ?; DC; 0; ?; ?; ?; 0; ????; SQ; ?; </pre>
+Let us say we just have the Economy cabin "Y" and Singapour airlines prices ticket for class "Y" and for class "M":
+<pre>1; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>2; SIN; BKK; ??; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</pre>
+We need to duplicate the fare rule to take into account both trip types: one-way "OW" and round-trip "RT":
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; ?; ?; ?; 0; ????; SQ; M;</pre>
+The fare options are all set to a default value "T" (meaning true) for the "M" class, "F" (meaning false) for the "Y" class. The fare values (arbitrary currency) are chosen to be all distinct.
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 160; SQ; M;</pre>
+</div>
+<h3>How to create a yield input file?</h3>
+<div>
+Once you have created your fare input file, building the yield one is very simple. Just copy your fare input file and remove everything related to restrictions, advance purchase and stay duration:
+<pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 160; SQ; M;</pre>
+</div>
+<div id="BOM_TREE" style="display:none;">
+	<img src="../assets/img/bom_tree.png" width="905" height="696" alt="BOM_Tree">
+<!--<iframe src="../assets/img/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>-->
+</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery-1.9.0.js" type="text/javascript"></script> 
+    <script src="../assets/js/jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
+	<script src="../assets/js/jsbean.js" type="text/javascript"></script>
+	<script>
+	$(function() {
+        $( "#accordion" ).accordion({
+            collapsible: true,
+			active: false,
+			heightStyle:"content",
+			header: "h3"
+		});
+    });
+	</script>
+
+  </body>
+</html>

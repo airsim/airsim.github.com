@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Forum - Travel Market Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../assets/css/jqueryui/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid"> 
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+          <a class="brand" href="../index.html"><img src="../assets/img/airsim_logo_32.png" width="32" height="32" alt="TvlSim_Logo" style="padding-right:10px;">Travel Market Simulator</a>
+          <div class="nav-collapse collapse">
+            <div class="navbar-text pull-right" style="padding-top:10px;"> <!-- Padding modified for custom social badges-->
+              <div id="social-badges"><a href="http://www.facebook.com/tvlsim" class="fb" onClick=""></a><a href="https://twitter.com/TravelSimulator" class="twitter" onClick=""></a><a href="http://fr.linkedin.com/in/airsim" class="linkedin" onClick=""></a></div>
+            </div>
+            <ul class="nav" style="padding-top:3px;"><!-- Padding modified to center-->
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../download.html">Download</a></li>
+              <li><a href="../onlinedemo.html">Online Demo</a></li>
+              <li><a href="../about.html">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Documentation</li>
+              <li><a href="../documentation/gettingstarted.html">Getting Started</a></li>
+              <li><a href="../documentation/tutorials.html">Tutorials</a></li>
+              <li><a href="../documentation/usermanual.html">User Manual</a></li>              
+              <li><a href="../documentation/faq.html">FAQ</a></li>
+              <li class="nav-header">Community</li>
+              <li><a href="contribute.html">Contribute</a></li>
+              <li class="active"><a href="">Forum</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="team.html">Team</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="row-fluid">
+          <iframe id="forumFrame" src="https://sourceforge.net/apps/phpbb/dsim/index.php" width="100%" height="700px" scrolling="no" frameborder="0"></iframe>
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Travel Market Simulator 2013</p>
+        <p class="legalfont">The Travel Market Simulator and this website are licensed under Apache 2.0 license<p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery-1.9.0.js" type="text/javascript"></script> 
+    <script src="../assets/js/jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script language="JavaScript">
+		function autoResize(id){
+			var newheight;
+			var newwidth;
+		
+			if(document.getElementById){
+				newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
+				newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
+			}
+		
+			document.getElementById(id).height= (newheight) + "px";
+			document.getElementById(id).width= (newwidth) + "px";
+		}
+	</script>
+
+
+  </body>
+</html>
