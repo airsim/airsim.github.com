@@ -115,9 +115,9 @@
 						   {
 							   $.each(data.posts,function(i,item){
 								   var postdate = new Date(item.date).toLocaleDateString();
-								   $("<blogdate/>").text(postdate).appendTo("#blogposts");
-								   $("<blogtitle/>").text(item.title).appendTo("#blogposts");
-								   $("<blogcontent/>").text(item.content).appendTo("#blogposts");
+								   $("<blogdate/>").html(postdate).appendTo("#blogposts");
+								   $("<blogtitle/>").html(item.title).appendTo("#blogposts");
+								   $("<blogcontent/>").html(item.content).appendTo("#blogposts");
 								   $("#blogposts").append("<hr>");
 								   //document.getElementById(posttitle).value = data.posts[0].title;
 								   
