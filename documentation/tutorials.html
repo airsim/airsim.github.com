@@ -140,7 +140,7 @@
                 	<li><a href="javascript:showPopup('#DEFAULT_BOM','How to use the default BOM tree?')">using the default BOM tree.</a></li>
 	            	<li><a href="javascript:showPopup('#CREATING_BOM','How to create your own BOM tree?')">creating your own BOM tree.</a></li>
 	            	<li><a href="javascript:showPopup('#EXISTING_FILES','How to use existing input files?')">using existing input files.</a></li>
-                	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?')">creating your own input files.</a></li>
+                	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?', null ,600)">creating your own input files.</a></li>
             	</ul>
 				</div>
             </div>
@@ -287,14 +287,13 @@ Once you have created your fare input file, building the yield one is very simpl
 <!--<iframe src="../assets/img/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>-->
 </div>
 
+
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery-1.9.0.js" type="text/javascript"></script> 
     <script src="../assets/js/jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
-    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/jsbean.js" type="text/javascript"></script>
-	<script>
+    <script>
 	$(function() {
         $( "#accordion" ).accordion({
             collapsible: true,
@@ -304,6 +303,7 @@ Once you have created your fare input file, building the yield one is very simpl
 		});
     });
 	</script>
-
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets/js/jsbean.js" type="text/javascript"></script>
   </body>
 </html>

@@ -176,7 +176,7 @@ components:
     repo: 'https://github.com/airsim/stdair.git'
     deps: {}
                 </pre>
-                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies</a> first!</p>
+                <p><strong>Good to know:</strong> if you are focusing on one specific module, you can remove everything else from the metasim file. Just be careful to check <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram')">dependencies</a> first!</p>
                 <p>For instance, if you are working on Travel-CCM only, you can keep only 'travelccm' and 'stdair'. In this case the metasim file should look like:</p>
                 <pre>
 # MetaSim configuration file
@@ -232,10 +232,10 @@ components:
                 Have the latest StdAir release 'tagged' as the stable one:
                 <pre>cd ~/dev/deliveries<br/>rm -f stdair-stable<br/>ln -s stdair-99.99.99 stdair-stable</pre>
                 <strong><h6 id="OTHER">Other module installation</h6></strong>
-                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
+                <p>In order to install another specific module, you need to check its dependencies in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram')">dependencies diagram</a>. For instance, we are going to focus on the demand generation module TraDemGen.</p>
                 Clone locally the full git project: 
                 <pre>cd ~/dev<br/>git clone git@github.com:airsim/trademgen.git trademgengit<br/>cd trademgengit<br/>git checkout trunk<br/>mkdir -p build && cd build</pre>
-                <p>As illustrated in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram', 1120, 500)">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
+                <p>As illustrated in the <a href="javascript:showPopup('#DEPENDENCIES_POPUP', 'Dependencies Diagram')">dependencies diagram</a>, the only dependencies of TraDemgen are the StdAir and SEvMgr libraries. That is why the StdAir and SEvMgr releases, which will be used to build the Trademgen component, need to be specified: </p>
                 <pre>cmake -DCMAKE_INSTALL_PREFIX=/home/[user]/dev/deliveries/trademgen-99.99.99 \ <br/>-DWITH_STDAIR_PREFIX=/home/[user]/dev/deliveries/stdair-stable \ <br/>-DWITH_SEVMGR_PREFIX=/home/[user]/dev/deliveries/sevmgr-stable \ <br/>-DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE:STRING=Debug -DINSTALL_DOC:BOOL=ON ..</pre>
                 Of course, you are supposed to have previously cloned, built and installed the SEvMgr library following exactly the same process as for StdAir. Do not forget that SEvMgr depends on StdAir as well!
                 <p>Build, install the demand generation library and perform tests:</p>
@@ -261,16 +261,19 @@ components:
         <p>&copy; Travel Market Simulator 2013</p>
         <p class="legalfont">The Travel Market Simulator and this website are licensed under Apache 2.0 license<p>
       </footer>
-
-    </div><!--/.fluid-container-->
+      
+  </div><!--/.fluid-container-->
+    
+    <div id="DEPENDENCIES_POPUP" style="display:none;">
+		<img src="../assets/img/tvlsim_dependencies.png" width="1060" height="406" alt="dependencies">
+<!--<iframe src="../assets/img/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>-->
+</div>
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery-1.9.0.js" type="text/javascript"></script> 
     <script src="../assets/js/jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
-    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-   
     <script>
 	$(function() {
         $( "#accordion" ).accordion({
@@ -281,6 +284,7 @@ components:
 		});
     });
 	</script>
-
-  </body>
+    <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/jsbean.js" type="text/javascript"></script>
+</body>
 </html>
