@@ -66,3 +66,23 @@ pre{
 	padding:.667em .917em;
 	background-color:#EEF7FD;
 }
+blogtitle {
+	font-size: 24px;
+	margin-bottom: 20px;
+	font:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-weight:400;
+	/*color:#5092bd;*/
+	margin-top:1em
+}
+blogdate {
+	float:right;
+	font-size:70%;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+blogcontent {
+	margin: 0 0 10px;
+	orphans: 3;
+    widows: 3;
+	font-size:100%;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
