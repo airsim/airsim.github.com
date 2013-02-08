@@ -1,5 +1,6 @@
 $(document).ready(function() 
 {
+	window.addEventListener("hashchange", function() { scrollBy(0, -50) })
 	var url = window.location;
 	var mySplitResult = url.toString().split("?");
 	var secondValue = mySplitResult[1];
