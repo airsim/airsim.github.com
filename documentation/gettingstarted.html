@@ -96,9 +96,13 @@
             
             <div id="accordion" style="padding:0px">
               <h3>Online Demo</h3>
-              <div>This is the best way to have a glance at the simulator's capabilities diectly from you browser. Be aware however that you data will not be saved and that you will only see the tip of the iceberg.</div>
-              <h3>Pre-installed in a downloadable virtual machine</h3>
-              <div>You want a quick start to get Travel Simulator working localy, this is for you! <br/>
+              <div> 
+                <h4>Online Version</h4>
+                This is the best way to have a glance at the simulator's capabilities directly from you browser. Be aware however that you data will not be saved and that you will only see the tip of the iceberg. The complete demo page is <a href="../onlinedemo.html">here</a>.</div>
+                <h3>Pre-installed in a downloadable virtual machine</h3>
+                <div>
+                <h4>Online Version</h4>
+                You want a quick start to get Travel Simulator working localy, this is for you! <br/>
                 First download the latest version of VirtualBox <a href="https://www.virtualbox.org/">here</a>. <br/>
                 Then download the VirtualBox Appliance <a href="../download.html">here.</a> <br/>
                 <br/>
@@ -110,8 +114,24 @@
                 Select the .OVA file you just downloaded and import the machine.<br/>
                 Once Virtual Box finished the setup simply run it. </div>
               <h3>Packaged</h3>
-              <div style="padding-left:5px; padding-right:5px">
-              <h4>Packaged Version</h4>
+              <div>
+                <h4>Packaged Version</h4>
+                <p>All simulator modules are available as RPM packages. Do not hesitate to check for the needed packages on the <a href="http://pkgs.org/">linux packages search page</a>. Follow the steps below to learn how to download and install those packages within one of the following Linux environment:</p>
+                <ul class="disc">
+                	<li><a href="#CENTOS">CentOS</a></li>
+                	<li><a href="#FEDORA">Fedora</a></li>
+                </ul>
+                <strong><h5 id="CENTOS">Using RPM packages within a CentOS environment</h5></strong>
+                <strong><h5 id="FEDORA">Using RPM packages within a Fedora environment</h5></strong>
+                <p>Fedora Linux users take advantage of the 'yum' command to search, install or update RPM packages:</p>
+                <pre>yum search &lt;module_name&gt;
+yum install &lt;module_name&gt;
+yum update &lt;module_name&gt;</pre>
+                <p>For instance, let's install the trademgen module in charge of the demand generation. Here are the corresponding <a href="https://apps.fedoraproject.org/packages/trademgen">available Fedora packages</a>. Then, try:</p>
+                <pre>yum search trademgen<br/>yum install trademgen</pre>
+                <p><strong>Good to notice!</strong> All trademgen dependencies (i.e. stdair and sevmgr) have been automatically installed too.</p>
+                <p>Finally, check that the installation has been successful by displaying the help of the trademgen module:</p>
+                <pre>trademgen -h</pre>
               </div>
               <h3>Github</h3>
               <div>
