@@ -95,13 +95,8 @@
             Travel Simulator comes in different flavors :<br />
             
             <div id="accordion" style="padding:0px">
-              <h3>Online Demo</h3>
-              <div> 
-                <h4>Online Version</h4>
-                This is the best way to have a glance at the simulator's capabilities directly from you browser. Be aware however that you data will not be saved and that you will only see the tip of the iceberg. The complete demo page is <a href="../onlinedemo.html">here</a>.</div>
                 <h3>Pre-installed in a downloadable virtual machine</h3>
                 <div>
-                <h4>Pre-installed in a downloadable virtual machine</h4>
                 You want a quick start to get Travel Simulator working localy, this is for you! <br/>
                 First download the latest version of VirtualBox <a href="https://www.virtualbox.org/">here</a>. <br/>
                 Then download the VirtualBox Appliance <a href="../download.html">here.</a> <br/>
@@ -113,9 +108,8 @@
                 <br/>
                 Select the .OVA file you just downloaded and import the machine.<br/>
                 Once Virtual Box finished the setup simply run it. </div>
-              <h3>Packaged</h3>
-              <div>
-                <h4>Packaged Version</h4>
+                <h3>From Linux distribution packages</h3>
+                <div>
                 <p>All simulator modules are available as RPM packages. Do not hesitate to check for the needed packages on the <a href="http://pkgs.org/">linux packages search page</a>. Follow the steps below to learn how to download and install those packages within one of the following Linux environment:</p>
                 <ul class="disc">
                 	<li>CentOS, Red Hat</li>
@@ -130,12 +124,10 @@ yum update &lt;module_name&gt;</pre>
                 <p><strong>Good to notice!</strong> All trademgen dependencies (i.e. stdair and sevmgr) have been automatically installed too.</p>
                 <p>Finally, check that the installation has been successful by displaying the help of the trademgen module:</p>
                 <pre>trademgen -h</pre>
-              </div>
-              <h3>Github</h3>
-              <div>
-                <h4>Github Project</h4>
-                <p>The easier way of getting started is to download all the simulator modules in one shot using the metasim component. You need to be working in a Linux/Unix environment. If not, try out the <a href="../onlinedemo.html">online version</a> or download the <a href="../download.html">virtual box appliance</a> to get all you need in one big package. </p>
-                <p>First of all, you need to <a href="https://help.github.com/articles/set-up-git"> install and set up git</a> within your working environment.</p>
+                </div>
+                <h3>From the source code repositories</h3>
+                <div>
+                <p>First of all, you need to <a href="https://help.github.com/articles/set-up-git"> install and set up git</a> within your working Linux/Unix environment.</p>
                 <p>If you are only interested by a specific module, or by individual component packages, you can find the module by module installation guide <a href="#MODULE">below</a>.</p>
                 <h5>Metasim installation</h5>
                 <p>Enter the chosen working directory, for instance:</p>
@@ -265,10 +257,6 @@ components:
                 If encounter any problem while opening a database connection, run the following batch scripts (before launching again the generateDemand script):
                 <pre>./workspace/build/stdair/db/admin/create_tvlsim_db.sh<br/>./workspace/build/stdair/db/admin/create_airinv_db.sh</pre>
                 Please go to the <a href="tutorials.html">tutorial</a> section to learn more about the simulation tools available and how to use them. </p></div>
-			<h3>Subversion</h3>
-            <div style="padding-left:5px; padding-right:5px">
-			<h4>Subversion project</h4>
-              </div>
             </div>
             
           </div><!--/row-->
