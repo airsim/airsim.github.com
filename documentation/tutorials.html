@@ -97,42 +97,6 @@
                 Also for focused information on precise problems make sure you have a look at the <a href="faq.html">F.A.Q.</a></p><br/>       
           
           <div id="accordion" style="padding:0px">
-            	<h3>General knowledge</h3>
-            	<div>
-            	Whatever the flavour chosen, those tutorials will help. The only difference is the way to launch binaries. Let's take for instance the whole simulator component named <strong>TvlSim</strong>.</br></br>
-            	If you are working within the <strong>pre-configured Virtual Box</strong>, the command is independent from the current directory as the simulator libraries have been installed within the Fedora package:
-            	<pre>tvlsim</pre>
-            	If you chose to work within the <strong>packaged metasim component</strong> (where all simulation modules are available), the correct way to launch the binary is:
-            	<pre>cd ~/dev/metasimgit/workspace/build/tvlsim/tvlsim</br>./tvlsim</pre>
-            	Finally, when dealing with all the <strong>modules independently</strong>, you can choose:
-            	<ul class="disc">
-                	<li>to run the local binary version:<br/></li><pre>cd ~/dev/tvlsimgit/tvlsim<br/>./simulate</pre>
-            		<li>or to run the installed version:<br/></li><pre>cd ~/dev/deliverie/tvlsim-99.99.99/bin/<br/>./simulate</pre>
-            	</ul>
-            	After running the script, you can check that a log file, named after the script, has been created in the current directory and have a look at it:
-            	<pre>ls</br>less simulate.log</pre>
-            	</div>
-            	<h3>Common commands for basic batches</h3>
-            	<div>
-            	From here, we choose to work in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> if you are not sure where to find the binaries.
-            	<ul class="disc">
-            		<li>Display the help:<br/><pre>./simulate --help</pre></li>
-            		<li>Run the scenario corresponding to a default built-in BOM tree:<br/><pre>./simulate --builtin</pre></li>
-            		<li>Run the scenario corresponding to default input files:<br/><pre>./simulate</pre></li>
-            	</ul><br/>
-            		</div>
-            	<h3>Common commands for interactive batches</h3>
-            	<div>
-            	In this part, we are working in the directory where the needed binary is present. Please refer to the <a href="javascript:accordionShowSection(0)">General knowledge part</a> part if you are not sure where to find the binaries.</br></br>
-            	The interactive scripts can be launched exactly as the non-interactive ones:
-            	<pre>./tvlsim</pre>
-            	At this step, you should see something similar to the following screen shot:<br/>
-            	<img src="../assets/img/ss_tvlsim_interactive.jpg" width="457" height="96" alt="test_result"><br/>
-            	To display the help of the interactive scenario:<br/>
-            	<pre>help</pre>
-            	To quit the interactive scenario:
-            	<pre>quit</pre>
-            	</div>
             	<h3>Building correct simulation inputs</h3>
             	<div>
             	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="usermanual.html?accordion?2">simulation input files</a>.</br> 
