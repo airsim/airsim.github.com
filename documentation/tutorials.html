@@ -97,10 +97,10 @@
                 Also for focused information on precise problems make sure you have a look at the <a href="faq.html">F.A.Q.</a></p><br/>       
           
           <div id="accordion" style="padding:0px">
-            	<h3>Building correct simulation inputs</h3>
+            	<h3>How do I build correct simulation inputs?</h3>
             	<div>
             	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="usermanual.html?accordion?2">simulation input files</a>.</br> 
-            	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br>
+            	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br></br>
             	There are many ways of giving your simulation inputs:<br/>
             	<ul class="disc">
                 	<li><a href="javascript:showPopup('#DEFAULT_BOM','How to use the default BOM tree?')">using the default BOM tree.</a></li>
@@ -108,7 +108,30 @@
 	            	<li><a href="javascript:showPopup('#EXISTING_FILES','How to use existing input files?')">using existing input files.</a></li>
                 	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?', null ,600)">creating your own input files.</a></li>
             	</ul>
-				</div>
+            	</div>
+            	<h3>How can I familiarise myself with the simulation event queue?</h3>
+            	<div>
+            	The module in charge of the event queue management is SEvMgr.<br/>
+            	To understand its main functionality, let's launch the sevmgr interactive batch named 'sevmgr'. Hardcoded events are already present in the default queue to make it easier to understand the simulation event management.</br></br>
+            	The display should look like (here, the date of the simulation world is the 21st of January 2010):
+            	<pre>Log filename is: sevmgr.log
+sevmgr P / 2010-Jan-21 00:00:00></pre>
+            	Try the 'display' command to learn more about the current event. The output should look like this:
+            	<pre>2010-Jan-21 00:00:00, BreakPoint, 2010-Jan-21 00:00:00</pre>
+            	Let's now have a look at the whole simulation queue using the 'list' command. There are three events to come, including two booking requests and a second break point (the first one was the first event of the queue):
+            	<pre>2010-Jan-22 10:00:00, BookingRequest, At 2010-Jan-22 10:00:00, for (SIN, IN) SIN-BKK (RI) 2010-Jan-30 (7 days) 10:00:00 Eco 3 M 1000 100 1 50 1 50
+2011-May-14 00:00:00, BreakPoint, 2011-May-14 00:00:00
+2011-May-15 10:00:00, BookingRequest, At 2011-May-15 10:00:00, for (LHR, DN) LHR-SYD (RI) 2011-Jun-10 (7 days) 08:00:00 Eco 3 M 1000 100 0 30 0 50 </pre>
+            	The 'next' command plays the current event and pops the next one from the queue. This is exactly the simulation principle: the events in the queue will be popped and played one by one. The simulation will only stop when a break point is encountered which is the objective of the 'run' command.
+				
+            	</div>
+            	<h3>How should I generate and insert my own booking requests in the event queue?</h3>
+            	<div>
+            	Now, the objective is to stop using default hard-coded events but to insert our own booking requests in the event queue. The module in charge of building and inserting booking requests in the queue is TraDemGen.
+            	</div>
+            	<h3>How can I perform my first fareQuote?</h3>
+            	<div>
+            	</div>
             </div>
           </div><!--/row-->
         </div><!--/span-->
