@@ -97,16 +97,70 @@
                 Also for focused information on precise problems make sure you have a look at the <a href="faq.html">F.A.Q.</a></p><br/>       
           
           <div id="accordion" style="padding:0px">
-            	<h3>How do I build correct simulation inputs?</h3>
+            	<h3>How can I build correct simulation inputs?</h3>
             	<div>
-            	The Business Object Model tree (now referred to as the BOM tree) can be seen as an easier alternative to the <a href="usermanual.html?accordion?2">simulation input files</a>.</br> 
-            	It contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br></br>
+            	There are two ways of giving your simulation inputs: using directly a Business Object Model tree (now referred to as the BOM tree) or parsing <a href="usermanual.html?accordion?2">simulation input files</a> to automatically build the BOM tree.
+            	The BOM tree contains exactly the same information as those files: airlines, schedules, fares, yield rules, ...</br></br>
             	There are many ways of giving your simulation inputs:<br/>
             	<ul class="disc">
-                	<li><a href="javascript:showPopup('#DEFAULT_BOM','How to use the default BOM tree?')">using the default BOM tree.</a></li>
-	            	<li><a href="javascript:showPopup('#CREATING_BOM','How to create your own BOM tree?')">creating your own BOM tree.</a></li>
-	            	<li><a href="javascript:showPopup('#EXISTING_FILES','How to use existing input files?')">using existing input files.</a></li>
-                	<li><a href="javascript:showPopup('#CREATING_FILES','How to create your own input files?', null ,600)">creating your own input files.</a></li>
+                	<li><a href="#DEFAULT_BOM">using the default BOM tree.</a></li>
+	            	<li><a href="#CREATING_BOM">creating your own BOM tree.</a></li>
+	            	<li><a href="#EXISTING_FILES">using existing input files.</a></li>
+                	<li><a href="#CREATING_FILES">creating your own input files.</a></li>
+            	</ul>
+            	<h5 id="DEFAULT_BOM">How can I use the default BOM tree?</h5></strong>
+            	To familiarize yourself with the default BOM tree, load the StdAir batch directory (for instance, if you are working within the metasim environment):
+            	<pre>cd ~/metasimgit/workspace/build/stdair/stdair/</pre>
+            	Then launch it with the default BOM tree option '-b':
+            	<pre>./stdair -b</pre>
+            	If you have a look at the log file (called after the launched batch), you can find the following <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, in this exact order :
+            	<ul class="disc">
+                	<li>a BOM tree root at the top of the tree</li>
+                	<li>some inventory objects at level one</li>
+                	<li>each inventory (characterised by an airline code) contains one or more flight dates (i.e. a flight number and an associated date)</li>
+                	<li>each flight date is composed of leg date and segment date objects</li>
+                	<li>each leg and segment contains associated cabins</li>
+                	<li>each segment cabin is composed of at least one fare family, whcih is in turn composed of one or more booking classes</li>
+            	</ul>
+            	To discover the second part of the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, you can launch SimFQT for instance:
+            	<pre>cd ~/metasimgit/workspace/build/simfqt/simfqt/</br>./simfqt -b</pre>
+            	This batch is an interactive one, try 'help' to obtain all the existing commands, and then 'list' to discover all the O&Ds and departure dates for which some fare rules are applicable.</br>
+            	Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At the beginning of the file, we find the BOM root display:
+            	<ul class="disc">
+                	<li>a BOM tree root at the top of the tree</li>
+                	<li>at level one we find some airport pairs (representing the origin and the destination of existing travels)</li>
+                	<li>at the lower level, we have date period, followed by point-of sale and channel options, followed by time period</li>
+                	<li>then we find the fares applicable and the corresponding options (saturday night, change fees, refundable criterion)</li>
+                	<li>finally, we have the airline codes and booking classes for which each fare rule is applicable</li>
+            	</ul>
+            	<h5 id="CREATING_BOM">How can I create my own BOM tree?</h5></strong>
+            	To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
+            	<pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
+            	Let us create our own BOM tree now.</br> 
+            	First, a BOM root object (i.e. a root for all the classes in the project) must be instantiated. This is done by the stdair::STDAIR_ServiceContext context object, when the stdair::STDAIR_Service is itself instantiated. The standard procedure is illustrated below:
+            	<pre>const BomRootKey lBomRootKey ("My first Bom Root");</br>BomRoot& lBomRoot = FacBom&#60BomRoot>::instance().create(lBomRootKey);</pre>
+            	An airline inventory object can then be instantiated.</br> 
+            	Let us create the "BA" airline code (corresponding to British Airways airline):
+            	<pre>const AirlineCode_T lAirlineCodeBA ("BA");</pre>
+            	That is, an object (let us name it lInventoryKeyBA) of type (class) stdair::InventoryKey has first to be instantiated.
+            	<pre>const InventoryKey lInventoryKeyBA (lAirlineCodeBA);</pre>
+            	Thanks to that key, an airline inventory object, i.e. of type (class) stdair::Inventory, can be instantiated. Let us name that airline inventory object lBAInv.
+            	<pre>Inventory& lBAInv = FacBom&#60Inventory>::instance().create(lInventoryKeyBA);</pre>
+            	Then, we must create the link parent/child to attach those two objects as defined in the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>. That operation is as simple as using the following methods:
+            	<pre>FacBomManager::addToListAndMap (lBomRoot, lBAInv);</br>FacBomManager::linkWithParent (lBomRoot, lBAInv);</pre>
+            	Another airline inventory object, corresponding to the AF (Air France) company, can be instantiated the same way:
+            	<pre>const AirlineCode_T lAirlineCodeAF ("AF");</br>const InventoryKey lAFKey (lAirlineCodeAF);</br>Inventory& lAFInv = FacBom<Inventory>::instance().create (lAFKey);</br>FacBomManager::addToListAndMap (lBomRoot, lAFInv);</br>FacBomManager::linkWithParent (lBomRoot, lAFInv);</pre>
+            	<h5 id="EXISTING_FILES">How can I use existing input files?</h5></strong>
+				When running a batch with no option specified, predefined default files are parsed and used to construct the BOM tree. 
+            	<h5 id="CREATING_FILES">How can I create my own input files?</h5></strong>
+            	In this tutorial, we are going to create our own input files one by one.</br>
+            	Please first read the <a href="usermanual.html?accordion?2">simulation input files description</a> to familiarize yourself with each type of file.</br></br>
+            	Then, follow the steps to build:
+            	<ul class="disc">
+                	<li><a href="javascript:showPopup('#SCHEDULE','How can I create a schedule input file?', 1000)">your own schedule input file</a></li>
+                	<li><a href="javascript:showPopup('#DEMAND','How can I create a demand input file?', 1100)">your own  demand input file</a></li>
+                	<li><a href="javascript:showPopup('#FARE','How can I create a fare input file?', 1000)">your own  fare input file</a></li>
+                	<li><a href="javascript:showPopup('#YIELD','How can I create a yield input file?', 1000)">your own yield input file</a></li>
             	</ul>
             	</div>
             	<h3>How can I familiarise myself with the simulation event queue?</h3>
@@ -127,7 +181,48 @@ sevmgr P / 2010-Jan-21 00:00:00></pre>
             	</div>
             	<h3>How should I generate and insert my own booking requests in the event queue?</h3>
             	<div>
-            	Now, the objective is to stop using default hard-coded events but to insert our own booking requests in the event queue. The module in charge of building and inserting booking requests in the queue is TraDemGen.
+            	Now, the objective is to stop using default hard-coded events (see the tutorial <a href="javascript:accordionShowSection(1)">How can I familiarise myself with the simulation event queue?</a>) but to insert our own booking requests in the event queue. The module in charge of building and inserting booking requests in the queue is TraDemGen.
+            	</br></br>
+            	Load the TraDemGen batch directory (for instance, if you are working within the metasim environment):
+            	<pre>cd ~/metasimgit/workspace/build/trademgen/trademgen/</pre>
+            	When launching the trademgen interactive batch with no parameter, a default demand input file is parsed. This file can be found in the <a href="https://github.com/airsim/stdair/tree/trunk/samples">StdAir sample directory</a>.
+            	<pre>./trademgen</pre>
+            	To see all the demand streams for which booking requests can be generated, try the command 'list_demand_stream'. You can check that you end up with the same demand streams as those defined in the input file. The output should look like:</br>
+            	<pre>List of demand streams
+SIN-BKK 2012-Apr-30 Y
+SIN-BKK 2012-May-07 Y
+SIN-BKK 2012-May-14 Y
+SIN-BKK 2012-May-21 Y
+SIN-BKK 2012-May-28 Y
+SIN-BKK 2012-Jun-04 Y
+SIN-BKK 2012-Jun-11 Y
+SIN-BKK 2012-Jun-18 Y
+SIN-BKK 2012-Jun-25 Y
+SIN-BKK 2012-Jul-02 Y
+...</pre>
+            	Then, the command 'list_event' will enable you to check that for now, the event list is empty:
+            	<pre>List of events
+EQ01
+(0) 0/{11520,11520}</pre>
+            	Let's now generate our first booking request for the first demand stream. The corresponding command is :
+            	<pre>generate_next_br SIN-BKK 2012-Apr-30 Y</pre>
+            	Let's now display again the event list ('list_event' command):
+            	<pre>List of events
+EQ01
+(1) 0/{11520,11520}
+2011-Jun-06 22:50:04.001000, BookingRequest, At 2011-Jun-06 22:50:04.001000, for (BKK, DN) SIN-BKK (RO) 2012-Apr-30 (5 days) 07:01:27 Y 1 G 185.452 55.6372 0 50</pre>
+            	A booking request has been created: the corresponding traveller is making his request on the 6th of June 2011 and is wishing to travel on the 30th of April 2012 from Singapour to Bangkok in the Economy cabin (as expected from the demand stream key). The other parameters'values have been created using the distribution defined in the demand input file.
+            	</br></br>Let's now generate all the booking requests for this same demand stream:
+            	<pre>generate_all_br SIN-BKK 2012-Apr-30 Y</pre>
+            	The output display should look like:
+            	<pre>339 more event(s) have been generated for the demand stream: 'SIN-BKK 2012-Apr-30 Y'.</pre>
+            	Display again the event list to see all the stored booking requests.
+            	</br></br>
+            	Finally, to visualize the booking requests arrival pattern, 'quit' the interactive command line and launch a python dedicated script located in the tool directory:
+            	<pre>./tools/trademgen_drawBookingArrivals -p trademgen.log</pre>
+            	Do not hesitate to repeat the steps above using your own demand input file. Please, refer to the <a href="javascript:showPopup('#CREATING_FILES', 'How can I create my own input files?', null, 600)">How can I build my own demand input file?</a> tutorial first.
+            	Then launch the demand generation script with your demand file specified as input parameter:
+            	<pre>./trademgen --input &#60your_demand_file.csv></pre>
             	</div>
             	<h3>How can I perform my first fareQuote?</h3>
             	<div>
@@ -145,59 +240,7 @@ sevmgr P / 2010-Jan-21 00:00:00></pre>
       </footer>
 
     </div><!--/.fluid-container-->
-    
-    <div id="DEFAULT_BOM" style="display:none">
-To familiarize yourself with the default BOM tree, load the StdAir batch directory (for instance, if you are working within the metasim environment):
-<pre>cd ~/metasimgit/workspace/build/stdair/stdair/</pre>
-Then launch it with the default BOM tree option '-b':
-<pre>./stdair -b</pre>
-If you have a look at the log file (called after the launched batch), you can find the following <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, in this exact order :
-<ul class="disc">
-    <li>a BOM tree root at the top of the tree</li>
-	<li>some inventory objects at level one</li>
-	<li>each inventory (characterised by an airline code) contains one or more flight dates (i.e. a flight number and an associated date)</li>
-	<li>each flight date is composed of leg date and segment date objects</li>
-	<li>each leg and segment contains associated cabins</li>
-	<li>each segment cabin is composed of at least one fare family, whcih is in turn composed of one or more booking classes</li>
-</ul>
-To discover the second part of the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>, you can launch SimFQT for instance:
-<pre>cd ~/metasimgit/workspace/build/simfqt/simfqt/</br>./simfqt -b</pre>
-This batch is an interactive one, try 'help' to obtain all the existing commands, and then 'list' to discover all the O&Ds and departure dates for which some fare rules are applicable.</br>
-Then 'quit' the interactive batch and open the log file named 'simfqt.log'. At the beginning of the file, we find the BOM root display:
-<ul class="disc">
-	<li>a BOM tree root at the top of the tree</li>
-	<li>at level one we find some airport pairs (representing the origin and the destination of existing travels)</li>
-	<li>at the lower level, we have date period, followed by point-of sale and channel options, followed by time period</li>
-	<li>then we find the fares applicable and the corresponding options (saturday night, change fees, refundable criterion)</li>
-    <li>finally, we have the airline codes and booking classes for which each fare rule is applicable</li>
-</ul>
-</div>
-<div id="CREATING_BOM" style="display:none">
-To understand how to create your own BOM tree, do not hesitate to have a look into the C++ file called CmdBomManager.cpp located in the following directory:
-<pre>cd ~/metasimgit/workspace/src/stdair/stdair/command/</pre>
-Let us create our own BOM tree now.</br> 
-First, a BOM root object (i.e. a root for all the classes in the project) must be instantiated. This is done by the stdair::STDAIR_ServiceContext context object, when the stdair::STDAIR_Service is itself instantiated. The standard procedure is illustrated below:
-<pre>const BomRootKey lBomRootKey ("My first Bom Root");</br>BomRoot& lBomRoot = FacBom&#60BomRoot>::instance().create(lBomRootKey);</pre>
-An airline inventory object can then be instantiated.</br> 
-Let us create the "BA" airline code (corresponding to British Airways airline):
-<pre>const AirlineCode_T lAirlineCodeBA ("BA");</pre>
-That is, an object (let us name it lInventoryKeyBA) of type (class) stdair::InventoryKey has first to be instantiated.
-<pre>const InventoryKey lInventoryKeyBA (lAirlineCodeBA);</pre>
-Thanks to that key, an airline inventory object, i.e. of type (class) stdair::Inventory, can be instantiated. Let us name that airline inventory object lBAInv.
-<pre>Inventory& lBAInv = FacBom&#60Inventory>::instance().create(lInventoryKeyBA);</pre>
-Then, we must create the link parent/child to attach those two objects as defined in the <a href="javascript:showPopup('#BOM_TREE', 'BOM tree structure', 930, 770)">BOM tree structure</a>. That operation is as simple as using the following methods:
-<pre>FacBomManager::addToListAndMap (lBomRoot, lBAInv);</br>FacBomManager::linkWithParent (lBomRoot, lBAInv);</pre>
-Another airline inventory object, corresponding to the AF (Air France) company, can be instantiated the same way:
-<pre>const AirlineCode_T lAirlineCodeAF ("AF");</br>const InventoryKey lAFKey (lAirlineCodeAF);</br>Inventory& lAFInv = FacBom<Inventory>::instance().create (lAFKey);</br>FacBomManager::addToListAndMap (lBomRoot, lAFInv);</br>FacBomManager::linkWithParent (lBomRoot, lAFInv);</pre>
-</div>
-<div id="EXISTING_FILES" style="display:none">
-When running a batch with no option specified, predefined default files are parsed and used to construct the BOM tree. 
-</div>
-<div id="CREATING_FILES" style="display:none">
-In this tutorial, we are going to create our own input files one by one.</br>
-Please first read the <a href="usermanual.html?accordion?2">simulation input files description</a> to familiarize yourself with each type of file.</br></br>
-<h3>How to create a schedule input file?</h3>
-<div>
+-<div id="SCHEDULE" style="display:none">
 Let us say we want to simulate the Singapour airline flight number 11 from SIN to BKK every day of the 2011 year. Our first network rule looks like:
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
 Let us add some details about departure time, arrival time and elapsed flight (in this exact order):
@@ -212,14 +255,13 @@ Because we take into account fare families here, we need to add a fare family di
 Some instances are available in the frat5.csv and ffDisutility.csv files in the StdAir samples directory. We finally obtain our first network rule:
 <pre>SQ; 11; 2011-01-01; 2011-12-31; 1111111; SIN; BKK; 08:20; 11:00; 07:40; Y; 300; Y; YM; 1;  F1; D1; Y; 2; F2; D2;</pre>
 </div>
-<h3>How to create a demand input file?</h3>
-<div>
+<div id="DEMAND" style="display:none">
 Now that we agreed on the flight to simulate, we need to generate the demand, that is to say the customers wishing to purchase seat(s) on the concerned flight.</br>
 This is the objective of the demand input file. This last one is organised around lines, each line representing a demand stream.
 Let us focus on the first demand stream:</br>
 we know we want to generate passengers wishing to travel from Singapour to Bangkok every day of the year 2011 (this matches exactly the Singapour flight numbered 11):
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; ... </pre>
-Those passengers are wishing to travel in the Economy cabin 'Y', let us arbitrary decide that 70% of those passengers are located in Singapour when willing to purchase a ticket,</br>20% of them are in Bangkok and the remaining 10% elsewhere ('row' stands for the rest of the world):
+Those passengers are wishing to travel in the Economy cabin 'Y', let us arbitrary decide that 70% of those passengers are located in Singapour when willing to purchase a ticket, 20% of them are in Bangkok and the remaining 10% elsewhere ('row' stands for the rest of the world):
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; ... </pre>
 Let us now arbitrarily define the channel distribution:
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; ... </pre>
@@ -236,7 +278,7 @@ Next, we find restriction information:
 50% of the passengers are accepting a restriction regarding the change fees whereas the other 50% are refusing such restriction (in the hard-restriction custumer choice model) or see this restriction</br>
 as a disutility value which is added to the actual fare (in the disutility customer choice model). Then we find the continuous cumulative distribution about preferred departure time:
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; ... </pre>
-In a more explicit way, we are saying that no passenger is wishing to travel before 6 in the morning, 10% are wishing to travel before 7 am, 30% are wishing to leave before 9 am (so 20% are</br>wishing to take off between 7 and 9 am), ... Let us now add information about the willingness-to-pay of such passengers: such passengers are at least ready to pay 200 (arbitrary currency) for their travel.
+In a more explicit way, we are saying that no passenger is wishing to travel before 6 in the morning, 10% are wishing to travel before 7 am, 30% are wishing to leave before 9 am (so 20% are wishing to take off between 7 and 9 am), ... Let us now add information about the willingness-to-pay of such passengers: such passengers are at least ready to pay 200 (arbitrary currency) for their travel.
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35 P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; ... </pre>
 Let us add the value of time in the customer point of view: what is the cost if he leaves one hour later than his preferred departure time:
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; ... </pre>
@@ -245,8 +287,7 @@ Let us now specify the arrival pattern of customers: 20% of them are making thei
 Finally, we give the distribution of the number of requests: let us take here a normal law with mean 100 and standard deviation 10 (specified as N, 100.0, 10.0):
 <pre>2011-01-01; 2011-12-31; 1111111; SIN; BKK; SIN:0.7, BKK:0.2, row:0.1; DF:0.1, DN:0.3, IF:0.4, IN:0.2; RO:0.6, RI:0.2, OW:0.2; 0:0.1, 1:0.1, 2:0.15, 3:0.15, 4:0.15, 5:0.35; P:0.01, G:0.05, S:0.15, M:0.3, N:0.49; 0.5; 50; 06; 50; 06:0, 07:0.1, 09:0.3, 17:0.4, 19:0.8, 20:0.95, 22:1; 200; 15:0, 60:1; 330:0, 40:0.2, 20:0.6, 1:1; N, 100.0, 10.0;</pre>
 </div>
-<h3>How to create a fare input file?</h3>
-<div>
+<div id="FARE" style="display:none">
 If we refer to the schedule input build, we deduce we need one or more fare rules:
 <ul class="disc">
 	<li>whose origin-destination couple is "SIN, BKK"</li>
@@ -266,11 +307,10 @@ We need to duplicate the fare rule to take into account both trip types: one-way
 The fare options are all set to a default value "T" (meaning true) for the "M" class, "F" (meaning false) for the "Y" class. The fare values (arbitrary currency) are chosen to be all distinct.
 <pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; F; F; F; 0; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 0; T; T; T; 0; 160; SQ; M;</pre>
 </div>
-<h3>How to create a yield input file?</h3>
-<div>
+<div id="YIELD" style="display:none">
 Once you have created your fare input file, building the yield one is very simple. Just copy your fare input file and remove everything related to restrictions, advance purchase and stay duration:
 <pre>1; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 150; SQ; Y;</br>2; SIN; BKK; OW; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 100; SQ; M;</br>3; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 220; SQ; Y;</br>4; SIN; BKK; RT; 2011-01-01; 2011-12-31; 00:00; 23:59; ALL; Y; DC; 160; SQ; M;</pre>
-</div>
+</div>     	
 <div id="BOM_TREE" style="display:none;">
 	<img src="../assets/img/bom_tree.png" width="905" height="696" alt="BOM_Tree">
 <!--<iframe src="../assets/img/bom_tree.png" width="98%" height="98%" marginWidth="0" marginHeight="0" scrolling="no"></iframe>-->
